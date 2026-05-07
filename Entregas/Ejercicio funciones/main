@@ -1,0 +1,48 @@
+package practicosoftware;
+
+import java.util.Scanner;
+
+public class Primersoftware {
+
+	public static void main(String[] args) {
+		Cliente cliente1 = new Cliente(0, null, null);
+		Scanner entrada = new Scanner(System.in);
+		int opcion = 0;
+		String nombre;
+		String apellido;
+		int ci = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Elija una opcion:");
+			System.out.println("Ingrese 1 para ingresar un usuario\n" + "Ingrese 2 para mostrar los usuarios\n" + "Ingrese 3 para salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese su nombre:");
+				nombre = entrada.next();
+				cliente1.setnom(nombre);
+				System.out.println("Ingrese su apellido:");
+				apellido = entrada.next();
+				cliente1.setapell(apellido);
+				System.out.println("Ingrese su cédula sin puntos ni guiones:");
+				ci = entrada.nextInt();
+				cliente1.setcedula(ci);
+
+			}
+				break;
+			case 2: {
+				System.out.println(cliente1);
+			}
+			default:
+
+			}
+		} while (opcion != 3);
+	}
+
+}
+
+
+
+
+
+
