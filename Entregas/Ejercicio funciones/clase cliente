@@ -1,0 +1,45 @@
+package practicosoftware;
+
+public class Cliente {
+
+	private int cedula;
+	private String nom;
+	private String apell;
+
+	public void setcedula(int cedula) {
+		this.cedula = cedula;
+	}
+
+	public int getcedula() {
+		return cedula;
+	}
+
+	public void setnom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getnom() {
+		return nom;
+	}
+
+	public void setapell(String apell) {
+		this.apell = apell;
+	}
+
+	public String getapell() {
+		return apell;
+	}
+
+	public Cliente(int cedula, String nom, String apell) {
+
+		this.cedula = cedula;
+		this.nom = nom;
+		this.apell = apell;
+	}
+	@Override
+	public String toString() {
+		return "Los datos del usuario son: " + this.getnom() + " " + this.getapell() + " " + this.getcedula();
+	}
+	
+	
+}
