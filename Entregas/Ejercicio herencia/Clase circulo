@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Circulo extends FiguraGeometrica {
+
+	private double radio;
+	private double perim;
+	private double area;
+
+	public double getRadio() {
+		return radio;
+	}
+
+	public void setRadio(double radio) {
+		this.radio = radio;
+	}
+
+	public double getPerim() {
+		return perim;
+	}
+
+	public void setPerim(double perim) {
+		this.perim = perim;
+	}
+
+	public double getArea() {
+		return area;
+	}
+
+	public void setArea(double area) {
+		this.area = area;
+	}
+
+	public Circulo(double perimetro, String figura, int lados, double radio, double perim, double area) {
+		super(perimetro, figura, lados);
+		this.radio = radio;
+		this.perim = perim;
+		this.area = area;
+	}
+
+}
