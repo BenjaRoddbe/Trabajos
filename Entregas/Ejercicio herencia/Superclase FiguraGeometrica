@@ -1,0 +1,40 @@
+package practicoiii;
+
+public abstract class FiguraGeometrica {
+
+	private double perimetro;
+	private String figura;
+	private int lados;
+
+	public double getPerimetro() {
+		return perimetro;
+	}
+
+	public void setPerimetro(double perimetro) {
+		this.perimetro = perimetro;
+	}
+
+	public String getFigura() {
+		return figura;
+	}
+
+	public void setFigura(String figura) {
+		this.figura = figura;
+	}
+
+	public int getLados() {
+		return lados;
+	}
+
+	public void setLados(int lados) {
+		this.lados = lados;
+	}
+
+	public FiguraGeometrica(double perimetro, String figura, int lados) {
+		super();
+		this.perimetro = perimetro;
+		this.figura = figura;
+		this.lados = lados;
+	}
+
+}
