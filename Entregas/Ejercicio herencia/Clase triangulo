@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Triangulo extends FiguraGeometrica {
+
+	private String tipo;
+	private int nroLados;
+	private double gradosAng;
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getNroLados() {
+		return nroLados;
+	}
+
+	public void setNroLados(int nroLados) {
+		this.nroLados = nroLados;
+	}
+
+	public double getGradosAng() {
+		return gradosAng;
+	}
+
+	public void setGradosAng(double gradosAng) {
+		this.gradosAng = gradosAng;
+	}
+
+	public Triangulo(double perimetro, String figura, int lados, String tipo, int nroLados, double gradosAng) {
+		super(perimetro, figura, lados);
+		this.tipo = tipo;
+		this.nroLados = nroLados;
+		this.gradosAng = gradosAng;
+	}
+
+}
