@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Auto extends Vehiculo {
+
+	private int identificador;
+	private String m;
+	private String co;
+
+	public int getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(int identificador) {
+		this.identificador = identificador;
+	}
+
+	public String getM() {
+		return m;
+	}
+
+	public void setM(String m) {
+		this.m = m;
+	}
+
+	public String getCo() {
+		return co;
+	}
+
+	public void setCo(String co) {
+		this.co = co;
+	}
+
+	public Auto(String modelo, int id, int nroMotor, int identificador, String m, String co) {
+		super(modelo, id, nroMotor);
+		this.identificador = identificador;
+		this.m = m;
+		this.co = co;
+	}
+
+}
