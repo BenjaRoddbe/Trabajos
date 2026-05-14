@@ -1,0 +1,40 @@
+package practicoiii;
+
+public abstract class Vehiculo {
+
+	private String modelo;
+	private int id;
+	private int nroMotor;
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getNroMotor() {
+		return nroMotor;
+	}
+
+	public void setNroMotor(int nroMotor) {
+		this.nroMotor = nroMotor;
+	}
+
+	public Vehiculo(String modelo, int id, int nroMotor) {
+		super();
+		this.modelo = modelo;
+		this.id = id;
+		this.nroMotor = nroMotor;
+	}
+
+}
