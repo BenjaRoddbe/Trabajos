@@ -1,1 +1,25 @@
+package practicoiii;
 
+public class Gestor {
+
+	public static void main(String[] args) {
+
+		Moto moto1 = new Moto("A123", 1234, 111, 1222, "Azul", "A1234");
+
+		Auto auto1 = new Auto("B123", 12345, 222, 1333, "Rojo", "B1234");
+
+		Alumno alumno1 = new Alumno("Benjamin", 123456789, 5555, "Primero", 17, 58027488);
+
+		Profesor profesor1 = new Profesor("Ramiro", 12345788, 4444, "Programación", "De 8 a 18", 20000);
+		
+		Director director1 = new Director("Julio", 123456787, 6666, "De 8 a 18", 40000, 1999);
+		
+		Triangulo triangulo1 = new Triangulo(10, "Triangulo", 3, "Equilatero", 3, 45);
+		
+		Circulo circulo1 = new Circulo(20, "Circulo", 0, 18, 15, 57);
+		
+		
+
+	}
+
+}
