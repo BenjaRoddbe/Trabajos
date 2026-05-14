@@ -1,0 +1,40 @@
+package practicoiii;
+
+public abstract class Persona {
+
+	private String nom;
+	private int ci;
+	private int nroTel;
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getCi() {
+		return ci;
+	}
+
+	public void setCi(String ci) {
+		this.ci = ci;
+	}
+
+	public int getNroTel() {
+		return nroTel;
+	}
+
+	public void setNroTel(int nroTel) {
+		this.nroTel = nroTel;
+	}
+
+	public Persona(String nom, int ci, int nroTel) {
+		super();
+		this.nom = nom;
+		this.ci = ci;
+		this.nroTel = nroTel;
+	}
+
+}
