@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Profesor extends Persona {
+
+	private String materia;
+	private String horario;
+	private int sueldo;
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
+	}
+
+	public int getSueldo() {
+		return sueldo;
+	}
+
+	public void setSueldo(int sueldo) {
+		this.sueldo = sueldo;
+	}
+
+	public Profesor(String nom, int ci, int nroTel, String materia, String horario, int sueldo) {
+		super(nom, ci, nroTel);
+		this.materia = materia;
+		this.horario = horario;
+		this.sueldo = sueldo;
+	}
+
+}
