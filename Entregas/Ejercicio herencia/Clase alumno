@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Alumno extends Persona {
+
+	private String curso;
+	private int edad;
+	private int cedula;
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public int getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(int cedula) {
+		this.cedula = cedula;
+	}
+
+	public Alumno(String nom, int ci, int nroTel, String curso, int edad, int cedula) {
+		super(nom, ci, nroTel);
+		this.curso = curso;
+		this.edad = edad;
+		this.cedula = cedula;
+	}
+
+}
