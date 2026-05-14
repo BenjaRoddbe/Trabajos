@@ -1,0 +1,40 @@
+package practicoiii;
+
+public class Director extends Persona {
+
+	private String horarioo;
+	private int salario;
+	private int tel;
+
+	public String getHorarioo() {
+		return horarioo;
+	}
+
+	public void setHorarioo(String horarioo) {
+		this.horarioo = horarioo;
+	}
+
+	public int getSalario() {
+		return salario;
+	}
+
+	public void setSalario(int salario) {
+		this.salario = salario;
+	}
+
+	public int getTel() {
+		return tel;
+	}
+
+	public void setTel(int tel) {
+		this.tel = tel;
+	}
+
+	public Director(String nom, int i, int nroTel, String horarioo, int salario, int tel) {
+		super(nom, i, nroTel);
+		this.horarioo = horarioo;
+		this.salario = salario;
+		this.tel = tel;
+	}
+
+}
