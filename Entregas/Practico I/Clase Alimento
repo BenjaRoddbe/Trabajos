@@ -1,0 +1,32 @@
+package Mercado;
+
+public class Alimento extends Producto {
+
+	private String fechaV;
+	private String fechaEnvase;
+
+	public String getFechaV() {
+		return fechaV;
+	}
+
+	public void setFechaV(String fechaV) {
+		this.fechaV = fechaV;
+	}
+
+	public String getFechaEnvase() {
+		return fechaEnvase;
+	}
+
+	public void setFechaEnvase(String fechaEnvase) {
+		this.fechaEnvase = fechaEnvase;
+	}
+
+	public Alimento(int id, String marca, String fechaV, String fechaEnvase) {
+		super(id, marca);
+		this.fechaV = fechaV;
+		this.fechaEnvase = fechaEnvase;
+	}
+
+	
+
+}
