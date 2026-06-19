@@ -1,0 +1,32 @@
+package Mercado;
+
+public class Ropa extends Producto {
+
+	private String material;
+	private String talle;
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	public String getTalle() {
+		return talle;
+	}
+
+	public void setTalle(String talle) {
+		this.talle = talle;
+	}
+
+	public Ropa(int id, String marca, String material, String talle) {
+		super(id, marca);
+		this.material = material;
+		this.talle = talle;
+	}
+
+	
+
+}
