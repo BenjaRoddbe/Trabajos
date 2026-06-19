@@ -1,0 +1,32 @@
+package Mercado;
+
+public class Electronica extends Producto {
+
+	private String disp;
+	private int añoFab;
+
+	public String getDisp() {
+		return disp;
+	}
+
+	public void setDisp(String disp) {
+		this.disp = disp;
+	}
+
+	public int getAñoFab() {
+		return añoFab;
+	}
+
+	public void setAñoFab(int añoFab) {
+		this.añoFab = añoFab;
+	}
+
+	public Electronica(int id, String marca, String disp, int añoFab) {
+		super(id, marca);
+		this.disp = disp;
+		this.añoFab = añoFab;
+	}
+
+	
+
+}
