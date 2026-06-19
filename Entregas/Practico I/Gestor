@@ -1,1 +1,174 @@
+package Mercado;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+
+		Electronica arregloElec[] = new Electronica[1];
+		Ropa arregloRopa[] = new Ropa[1];
+		Alimento arregloAlim[] = new Alimento[1];
+		int opcion = 0;
+
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese un producto de cada una de las siguientes categorías:");
+			System.out.println("1-Electronica");
+			System.out.println("2-Ropa");
+			System.out.println("3-Alimento");
+			System.out.println("4-Mostrar productos");
+			System.out.println("5-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese id del producto:");
+				int id = 0;
+				id = entrada.nextInt();
+				System.out.println("Ingrese marca:");
+				String m = "";
+				m = entrada.next();
+				System.out.println("Ingrese el dispositivo:");
+				String d = "";
+				d = entrada.next();
+				System.out.println("Ingrese año de fabricación:");
+				int añoF = 0;
+				añoF = entrada.nextInt();
+				altaElectronica(arregloElec, id, m, d, añoF);
+
+			}
+				break;
+			case 2: {
+
+				System.out.println("Ingrese id del producto:");
+				int idR = 0;
+				idR = entrada.nextInt();
+				System.out.println("Ingrese marca:");
+				String mR = "";
+				mR = entrada.next();
+				System.out.println("Ingrese el material de la prenda:");
+				String mat = "";
+				mat = entrada.next();
+				System.out.println("Ingrese el talle de la prenda:");
+				String t = "";
+				t = entrada.next();
+				altaRopa(arregloRopa, idR, mR, mat, t);
+			}
+				break;
+			case 3: {
+				System.out.println("Ingrese id del producto:");
+				int idA = 0;
+				idA = entrada.nextInt();
+				System.out.println("Ingrese marca:");
+				String mA = "";
+				mA = entrada.next();
+				System.out.println("Ingrese fecha de vencimiento:");
+				System.out.println("De este modo, ej: " + "12ENERO2026");
+				String fV = "";
+				fV = entrada.next();
+				System.out.println("Ingrese fecha de envase, del mismo modo:");
+				String fE = "";
+				fE = entrada.next();
+				altaAlimento(arregloAlim, idA, mA, fV, fE);
+
+			}
+				break;
+			case 4: {
+				System.out.println("ELECTRONICA:");
+				listarElectronica(arregloElec);
+				System.out.println("ROPA:");
+				listarRopa(arregloRopa);
+				System.out.println("ALIMENTO");
+				listarAlimento(arregloAlim);
+				
+			}
+				break;
+			case 5: {
+				System.out.println("Adiós");
+			}
+
+			}
+
+		} while (opcion != 6);
+
+	}
+
+	public static void altaElectronica(Electronica[] a, int id, String m, String disp, int añoF) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Electronica(id, m, disp, añoF);
+			}
+		}
+
+	}
+
+	public static void altaRopa(Ropa[] a, int id, String mr, String mat, String t) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Ropa(id, mr, mat, t);
+			}
+		}
+
+	}
+
+	public static void altaAlimento(Alimento[] a, int id, String mA, String fV, String fE) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Alimento(id, mA, fV, fE);
+			}
+		}
+
+	}
+
+	public static void listarElectronica(Electronica[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Marca: " + a[i].getMarca());
+				System.out.println("Dispositivo: " + a[i].getDisp());
+				System.out.println("Año de fabricación: " + a[i].getAñoFab());
+			}
+
+		}
+	}
+	
+	public static void listarRopa(Ropa[]a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Marca: " + a[i].getMarca());
+				System.out.println("Material: " + a[i].getMaterial());
+				System.out.println("Talle: " + a[i].getTalle());
+			}
+
+		}
+		
+	}
+	
+	public static void listarAlimento(Alimento[]a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Marca: " + a[i].getMarca());
+				System.out.println("Fecha de vencimiento: " + a[i].getFechaV());
+				System.out.println("Fecha de envase: " + a[i].getFechaEnvase());
+			}
+
+		}
+		
+	}
+}
 
