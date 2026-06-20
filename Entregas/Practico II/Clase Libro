@@ -1,0 +1,30 @@
+package practicoII;
+
+public class Libro extends Publicacion {
+
+	private String genero;
+	private int nroPaginas;
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public int getNroPaginas() {
+		return nroPaginas;
+	}
+
+	public void setNroPaginas(int nroPaginas) {
+		this.nroPaginas = nroPaginas;
+	}
+
+	public Libro(int id, String autor, String genero, int nroPaginas) {
+		super(id, autor);
+		this.genero = genero;
+		this.nroPaginas = nroPaginas;
+	}
+
+}
