@@ -1,0 +1,30 @@
+package practicoII;
+
+public class Revista extends Publicacion {
+
+	private int nroEdicion;
+	private String fechaPubli;
+
+	public int getNroEdicion() {
+		return nroEdicion;
+	}
+
+	public void setNroEdicion(int nroEdicion) {
+		this.nroEdicion = nroEdicion;
+	}
+
+	public String getFechaPubli() {
+		return fechaPubli;
+	}
+
+	public void setFechaPubli(String fechaPubli) {
+		this.fechaPubli = fechaPubli;
+	}
+
+	public Revista(int id, String autor, int nroEdicion, String fechaPubli) {
+		super(id, autor);
+		this.nroEdicion = nroEdicion;
+		this.fechaPubli = fechaPubli;
+	}
+
+}
