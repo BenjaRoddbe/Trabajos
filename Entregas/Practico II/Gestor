@@ -1,0 +1,181 @@
+package practicoII;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+
+		Libro arregloLibro[] = new Libro[10];
+		Revista arregloRevista[] = new Revista[10];
+		Articulo_Cientifico arregloArt[] = new Articulo_Cientifico[10];
+		int opcion = 0;
+		do {
+			System.out.println("Ingrese un libro, revista o artículo");
+			System.out.println("1-Ingresar libro");
+			System.out.println("2-Ingresar revista");
+			System.out.println("3-Ingresar artículo");
+			System.out.println("4-Mostrar libro/s");
+			System.out.println("5-Mostrar revista/s");
+			System.out.println("6-Mostrar articulo/s");
+			System.out.println("7-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+
+			case 1: {
+				System.out.println("Ingrese el id del libro");
+				int id = 0;
+				id = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String auL = "";
+				auL = entrada.next();
+				System.out.println("Ingrese el género:");
+				String gen = "";
+				gen = entrada.next();
+				System.out.println("Por último ingrese el número de páginas:");
+				int nroP = 0;
+				nroP = entrada.nextInt();
+				altaLibro(arregloLibro, id, auL, gen, nroP);
+
+			}
+				break;
+			case 2: {
+				System.out.println("Ingrese el id de la revista:");
+				int idR = 0;
+				idR = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String auR = "";
+				auR = entrada.next();
+				System.out.println("Ingrese el número de edición:");
+				int nroE = 0;
+				nroE = entrada.nextInt();
+				System.out.println("Ingrese la fecha de publicación:");
+				System.out.println("De este modo, ej: 30MAYO2016");
+				String fP = "";
+				fP = entrada.next();
+				altaRevista(arregloRevista, idR, auR, nroE, fP);
+			}
+				break;
+			case 3: {
+				System.out.println("Ingrese el id del artículo:");
+				int idA = 0;
+				idA = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String auA = "";
+				auA = entrada.next();
+				System.out.println("Ingrese el idioma:");
+				String idioma = "";
+				idioma = entrada.next();
+				System.out.println("Ingrese el área (biología, arte, etc):");
+				String area = "";
+				area = entrada.next();
+				altaArticulo(arregloArt, idA, auA, idioma, area);
+
+			}
+				break;
+			case 4: {
+				listarLibro(arregloLibro);
+
+			}
+				break;
+			case 5:{
+				listarRevista(arregloRevista);
+			}break;
+			case 6:{
+				listarArticulo(arregloArt);
+			}
+			case 7:{
+				System.out.println("Adiós");
+				break;
+			}
+			default:
+			}
+		} while (opcion != 7);
+
+	}
+
+	public static void altaLibro(Libro[] a, int id, String au, String gen, int nroP) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Libro(id, au, gen, nroP);
+				break;
+			}
+		}
+
+	}
+
+	public static void altaRevista(Revista[] a, int id, String au, int nroE, String fechP) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Revista(id, au, nroE, fechP);
+				break;
+			}
+		}
+
+	}
+
+	public static void altaArticulo(Articulo_Cientifico[] a, int id, String au, String idioma, String area) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Articulo_Cientifico(id, au, idioma, area);
+				break;
+			}
+		}
+	}
+
+	public static void listarLibro(Libro[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Autor:" + a[i].getAutor());
+				System.out.println("Género:" + a[i].getGenero());
+				System.out.println("Número de páginas:" + a[i].getNroPaginas());
+
+			}
+		}
+
+	}
+	
+	public static void listarRevista(Revista[]a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Autor:" + a[i].getAutor());
+				System.out.println("Número de edición:" + a[i].getNroEdicion());
+				System.out.println("Fecha de publicación:" + a[i].getFechaPubli());
+
+			}
+		}
+	}
+		public static void listarArticulo(Articulo_Cientifico[]a) {
+			
+			for (int i = 0; i < a.length; i++) {
+				if (a[i] != null) {
+					System.out.println("ID:" + a[i].getId());
+					System.out.println("Autor:" + a[i].getAutor());
+					System.out.println("Idioma del artículo:" + a[i].getIdioma());
+					System.out.println("Área del artículo:" + a[i].getAera());
+
+				}
+			}
+			
+			
+		}
+			
+			
+		
+	}
+
+
