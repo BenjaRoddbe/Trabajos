@@ -1,0 +1,30 @@
+package pactico;
+
+public class Apartamento extends Edificio {
+
+	private int nroApartamentos;
+	private int nroHuespedes;
+
+	public int getNroApartamentos() {
+		return nroApartamentos;
+	}
+
+	public void setNroApartamentos(int nroApartamentos) {
+		this.nroApartamentos = nroApartamentos;
+	}
+
+	public int getNroHuespedes() {
+		return nroHuespedes;
+	}
+
+	public void setNroHuespedes(int nroHuespedes) {
+		this.nroHuespedes = nroHuespedes;
+	}
+
+	public Apartamento(int id, String calle, int nroApartamentos, int nroHuespedes) {
+		super(id, calle);
+		this.nroApartamentos = nroApartamentos;
+		this.nroHuespedes = nroHuespedes;
+	}
+
+}
