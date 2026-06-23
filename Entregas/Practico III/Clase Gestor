@@ -1,0 +1,129 @@
+package pactico;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+
+		Casa arregloCasa[] = new Casa[10];
+		Apartamento arregloApart[] = new Apartamento[10];
+		int opcion = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Elija una opción para ingresar:");
+			System.out.println("1-Ingresar una casa");
+			System.out.println("2-Ingresar un apartamento");
+			System.out.println("3-Mostrar casa(s) ingresada(s)");
+			System.out.println("4-Mostrar apartamento(s) ingresado(s)");
+			System.out.println("5-Salir");
+			opcion = entrada.nextInt();
+
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese el id de la casa:");
+				int id = 0;
+				id = entrada.nextInt();
+				System.out.println("Ingrese la calle:");
+				String calle = "";
+				calle = entrada.next();
+				System.out.println("Ingrese el número de habitaciones:");
+				int nroH = 0;
+				nroH = entrada.nextInt();
+				System.out.println("Ingrese el número de pisos:");
+				int nroPisos = 0;
+				nroPisos = entrada.nextInt();
+				altaCasa(arregloCasa, id, calle, nroH, nroPisos);
+				break;
+			}
+			case 2: {
+				System.out.println("Ingrese el id del apartamento:");
+				int idAp = 0;
+				idAp = entrada.nextInt();
+				System.out.println("Ingrese la calle:");
+				String calleA = "";
+				calleA = entrada.next();
+				System.out.println("Ingrese el número de apartamentos:");
+				int nroAp = 0;
+				nroAp = entrada.nextInt();
+				System.out.println("Ingrese el número de huéspedes");
+				int nroHu = 0;
+				nroHu = entrada.nextInt();
+				altaApart(arregloApart, idAp, calleA, nroAp, nroHu);
+				break;
+			}
+			case 3: {
+				listarCasa(arregloCasa);
+				break;
+
+			}
+			case 4:{
+				listarApart(arregloApart);
+			}
+			case 5:{
+				System.out.println("Adios");
+				break;
+			}
+			default:
+				System.out.println("Error");
+				break;
+			}
+		} while (opcion != 6);
+
+	}
+
+	public static void altaCasa(Casa[] a, int id, String c, int nroH, int nroP) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Casa(id, c, nroH, nroP);
+				break;
+			}
+		}
+
+	}
+
+	public static void altaApart(Apartamento[] a, int id, String c, int nroA, int nroHu) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Apartamento(id, c, nroA, nroHu);
+				break;
+			}
+		}
+
+	}
+	
+	public static void listarCasa(Casa[]a) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Calle:" + a[i].getCalle());
+				System.out.println("Número de habitaciones:" + a[i].getNroHabitaciones());
+				System.out.println("Número de pisos:" + a[i].getNroPisos());
+				
+			}
+		}
+		
+	}
+	
+	public static void listarApart(Apartamento[]a) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Calle:" + a[i].getCalle());
+				System.out.println("Número de apartamentos:" + a[i].getNroApartamentos());
+				System.out.println("Número de huéspedes:" + a[i].getNroHuespedes());
+			}
+		}
+		
+	}
+
+}
