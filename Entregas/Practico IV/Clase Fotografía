@@ -1,0 +1,30 @@
+package practico;
+
+public class Fotografia extends ObraArte {
+
+	private String locacion;
+	private String fecha;
+
+	public String getLocacion() {
+		return locacion;
+	}
+
+	public void setLocacion(String locacion) {
+		this.locacion = locacion;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public Fotografia(int id, String autor, String locacion, String fecha) {
+		super(id, autor);
+		this.locacion = locacion;
+		this.fecha = fecha;
+	}
+
+}
