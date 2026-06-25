@@ -1,0 +1,30 @@
+package practico;
+
+public class Pintura extends ObraArte {
+
+	private String tema;
+	private String nombre;
+
+	public String getTema() {
+		return tema;
+	}
+
+	public void setTema(String tema) {
+		this.tema = tema;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Pintura(int id, String autor, String tema, String nombre) {
+		super(id, autor);
+		this.tema = tema;
+		this.nombre = nombre;
+	}
+
+}
