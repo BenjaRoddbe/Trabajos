@@ -1,0 +1,30 @@
+package practico;
+
+public class Escultura extends ObraArte {
+
+	private String material;
+	private String tamaño;
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+
+	public String getTamaño() {
+		return tamaño;
+	}
+
+	public void setTamaño(String tamaño) {
+		this.tamaño = tamaño;
+	}
+
+	public Escultura(int id, String autor, String material, String tamaño) {
+		super(id, autor);
+		this.material = material;
+		this.tamaño = tamaño;
+	}
+
+}
