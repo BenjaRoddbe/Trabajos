@@ -1,0 +1,168 @@
+package practico;
+import java.util.Scanner;
+public class Gestor {
+
+	public static void main(String[] args) {
+		
+		Scanner entrada = new Scanner(System.in);
+		Pintura arregloPintura[] = new Pintura[10];
+		Escultura arregloEscu[] = new Escultura[10];
+		Fotografia arregloFoto[] = new Fotografia[10];
+		
+		
+		int opcion = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese una opcion");
+			System.out.println("1-Ingresar una pintura");
+			System.out.println("2-Ingresar una escultura");
+			System.out.println("3-Ingresar una fotografía");
+			System.out.println("4-Listar pintura(s)");
+			System.out.println("5-Listar escultura(s)");
+			System.out.println("6-Listar fotografía(s)");
+			System.out.println("7-Salir");
+			opcion = entrada.nextInt();
+			
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese el id de la pintura:");
+				int idP = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autP = entrada.next();
+				System.out.println("Ingrese el tema:");
+				String tema = entrada.next();
+				System.out.println("Ingrese el nombre de la pintura:");
+				String nom = entrada.next();
+				altaPintura(arregloPintura,idP,autP,tema,nom);
+				break;
+				
+			}
+			case 2:{
+				System.out.println("Ingrese el id de la escultura:");
+				int idE = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autE = entrada.next();
+				System.out.println("Ingrese el material de la escultura:");
+				String mat = entrada.next();
+				System.out.println("Ingrese el tamaño:");
+				String tam = entrada.next();
+				altaEscul(arregloEscu,idE,autE,mat,tam);
+				break;
+			}
+			case 3 :{
+				System.out.println("Ingrese el id de la fotografía:");
+				int idF = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autF = entrada.next();
+				System.out.println("Ingrese la locación:");
+				String loc = entrada.next();
+				System.out.println("Ingrese la fecha de la fotografía:");
+				System.out.println("De este modo, ej: 12ENERO2026");
+				String fech = entrada.next();
+				altaFoto(arregloFoto,idF,autF,loc,fech);
+				break;
+			}
+			case 4:{
+				listarPintura(arregloPintura);
+				break;
+			}
+			case 5:{
+				listarEscul(arregloEscu);
+				break;
+			}
+			case 6:{
+				listarFoto(arregloFoto);
+				break;
+			}
+			case 7:{
+				System.out.println("Adios");
+				break;
+			}
+			default:{
+				System.out.println("Error");
+				break;
+			}
+			}
+		} while (opcion!=7);
+		
+	}
+	
+	public static void altaPintura(Pintura[]a,int id, String aut,String tema,String nom) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				
+			}else {
+				a[i] = new Pintura(id,aut,tema,nom);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void altaEscul(Escultura[]a,int id,String aut,String mat,String tam) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				
+			}else {
+				a[i] = new Escultura(id,aut,mat,tam);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void altaFoto(Fotografia[]a,int id, String aut, String loc,String fech) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				
+			}else {
+				a[i] = new Fotografia(id,aut,loc,fech);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void listarPintura(Pintura[]a) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Autor:" + a[i].getAutor());
+				System.out.println("Tema:" + a[i].getTema());
+				System.out.println("Nombre:" + a[i].getNombre());
+			}
+		}
+		
+	}
+	
+	public static void listarEscul(Escultura[]a) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Autor:" + a[i].getAutor());
+				System.out.println("Material:" + a[i].getMaterial());
+				System.out.println("Tamaño:" + a[i].getTamaño());
+				
+			}
+		}
+	}
+	
+	public static void listarFoto(Fotografia[]a) {
+		
+		for(int i = 0; i < a.length; i++) {
+			if(a[i]!=null) {
+				System.out.println("ID:" + a[i].getId());
+				System.out.println("Autor:" + a[i].getAutor());
+				System.out.println("Locación:" + a[i].getLocacion());
+				System.out.println("Fecha de la fotografía:" + a[i].getFecha());
+			}
+		}
+		
+	}
+
+}
