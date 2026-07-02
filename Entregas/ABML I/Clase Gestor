@@ -1,0 +1,492 @@
+package abml;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		Electronica arregloElec[] = new Electronica[10];
+		Ropa arregloRopa[] = new Ropa[10];
+		Alimento arregloAlimento[] = new Alimento[10];
+		int opcion = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese una opción:");
+			System.out.println("1-Ingresar un producto de electrónica");
+			System.out.println("2-Ingresar un producto de ropa");
+			System.out.println("3-Ingresar un producto alimenticio");
+			System.out.println("-----------------------");
+			System.out.println("4-Listar electrónica");
+			System.out.println("5-Listar ropa");
+			System.out.println("6-Listar aliemntos");
+			System.out.println("-----------------------");
+			System.out.println("7-Eliminar un producto");
+			System.out.println("8-Modificar un producto");
+			System.out.println("-----------------------");
+			System.out.println("9-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese el id del producto:");
+				int idE = entrada.nextInt();
+				System.out.println("Ingrese el nombre del producto:");
+				String nomE = entrada.next();
+				System.out.println("Ingrese el año de fabricación:");
+				System.out.println("De este modo: 12ENERO2026");
+				String añoF = entrada.next();
+				System.out.println("Ingrese el tamaño del producto:");
+				String tam = entrada.next();
+				altaElec(arregloElec, idE, nomE, añoF, tam);
+				break;
+
+			}
+			case 2: {
+				System.out.println("Ingrese el id del producto:");
+				int idR = entrada.nextInt();
+				System.out.println("Ingrese el nombre del producto:");
+				String nomR = entrada.next();
+				System.out.println("Ingrese la prenda:");
+				String pren = entrada.next();
+				System.out.println("Ingrese la marca:");
+				String m = entrada.next();
+				altaRopa(arregloRopa, idR, nomR, pren, m);
+				break;
+
+			}
+			case 3: {
+				System.out.println("Ingrese el id del producto:");
+				int idA = entrada.nextInt();
+				System.out.println("Ingrese el nombre del producto:");
+				String nomA = entrada.next();
+				System.out.println("Ingrese la fecha de vencimiento:");
+				System.out.println("De este modo: 12ENERO2027");
+				String fechV = entrada.next();
+				System.out.println("Ingrese la fecha de envase, del mismo modo:");
+				String fechE = entrada.next();
+				altaAlim(arregloAlimento, idA, nomA, fechV, fechE);
+				break;
+			}
+			case 4: {
+				listarElec(arregloElec);
+				break;
+
+			}
+			case 5: {
+				listarRopa(arregloRopa);
+				break;
+			}
+			case 6: {
+				listarAlim(arregloAlimento);
+				break;
+			}
+			case 7: {
+				System.out.println("Ingrese la cat. de la que desea elminiar un producto.");
+				System.out.println("1-Electrónica");
+				System.out.println("2-Ropa");
+				System.out.println("3-Alimentos");
+				int opcion1 = entrada.nextInt();
+				do {
+					switch (opcion1) {
+					case 1: {
+						eliminarElec(arregloElec);
+						opcion1 = 4;
+						break;
+
+					}
+					case 2: {
+						eliminarRopa(arregloRopa);
+						opcion1 = 4;
+						break;
+					}
+					case 3: {
+						eliminarAlim(arregloAlimento);
+						opcion1 = 4;
+						break;
+					}
+					default:
+						System.out.println("Error");
+
+						break;
+
+					}
+
+				} while (opcion1 != 4);
+
+				break;
+
+			}
+			case 8: {
+				System.out.println("Ingrese la cat. de la que desea modificar un producto.");
+				System.out.println("1-Electrónica");
+				System.out.println("2-Ropa");
+				System.out.println("3-Alimentos");
+				int opcion2 = entrada.nextInt();
+				do {
+					switch (opcion2) {
+					case 1: {
+						System.out.println("Ingrese el dato que desea modificar:");
+						System.out.println("1-Id");
+						System.out.println("2-Nombre");
+						System.out.println("3-Año de fabricación");
+						System.out.println("4-Tamaño");
+						int idN = 0;
+						String nomN = "";
+						String añofN = "";
+						String tamN = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idN = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomN = entrada.next();
+						}
+						if (datoModif == 3) {
+							System.out.println("Ingrese el nuevo año de fabricación");
+							System.out.println("De este modo, ej: 12ENERO2026");
+							añofN = entrada.next();
+						}
+						if (datoModif == 4) {
+							System.out.println("Ingrese el tamaño nuevo:");
+							tamN = entrada.next();
+						}
+						modifElec(arregloElec, idN, añofN, nomN, tamN, datoModif);
+						opcion2 = 4;
+						break;
+					}
+					case 2:{
+						System.out.println("Ingrese el dato que desea modifcar:");
+						System.out.println("1-Id");
+						System.out.println("2-Nombre");
+						System.out.println("3-Prenda");
+						System.out.println("4-Marca");
+						int idNR = 0;
+						String nomNR = "";
+						String prenNR = "";
+						String marcaNR = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idNR = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomNR = entrada.next();
+						}
+						if(datoModif == 3) {
+							System.out.println("Ingrese la nueva prenda:");
+							prenNR = entrada.next();
+						}
+						if(datoModif == 4) {
+							System.out.println("Ingrese la nueva marca:");
+							marcaNR = entrada.next();
+						}
+						modifRopa(arregloRopa, idNR, nomNR, prenNR, marcaNR, datoModif);
+						opcion2 = 4;
+						break;
+					}
+					case 3:{
+						System.out.println("Ingrese el dato que desea modifcar:");
+						System.out.println("1-Id");
+						System.out.println("2-Nombre");
+						System.out.println("3-Fecha de vencimiento");
+						System.out.println("4-Fecha de envase");
+						int idNA = 0;
+						String nomNA = "";
+						String fechaVNA = "";
+						String fechaENA = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idNA = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomNA = entrada.next();
+						}
+						if(datoModif == 3) {
+							System.out.println("Ingrese la nueva fecha de vencimiento:");
+							System.out.println("De este modo, ej: 12ENERO2026");
+							fechaVNA = entrada.next();
+
+						}
+						if(datoModif == 4) {
+							System.out.println("Ingrese la nueva fecha de envase:");
+							System.out.println("De este modo, ej: 12ENERO2026");
+							fechaENA = entrada.next();
+						}
+						modifAlim(arregloAlimento, idNA, nomNA,fechaVNA, fechaENA,datoModif);
+						opcion2 = 4;
+						break;
+					}
+					default:
+						break;
+					}
+				} while (opcion2 != 4);
+			}
+				break;
+			default:
+				System.out.println("Error");
+				break;
+			}
+		} while (opcion != 10);
+	}
+
+	public static void altaElec(Electronica[] a, int id, String nomE, String añoF, String tam) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Electronica(id, nomE, añoF, tam);
+				break;
+			}
+		}
+	}
+
+	public static void altaRopa(Ropa[] a, int id, String nomR, String pren, String m) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Ropa(id, nomR, pren, m);
+				break;
+			}
+
+		}
+	}
+
+	public static void altaAlim(Alimento[] a, int id, String nomA, String fechV, String fechE) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Alimento(id, nomA, fechV, fechE);
+				break;
+			}
+		}
+	}
+
+	public static void listarElec(Electronica[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Nombre: " + a[i].getNom());
+				System.out.println("Año de fabricación: " + a[i].getAñoFabri());
+				System.out.println("Tamaño: " + a[i].getTamaño());
+			}
+		}
+
+	}
+
+	public static void listarRopa(Ropa[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Nombre: " + a[i].getNom());
+				System.out.println("Prenda: " + a[i].getPrenda());
+				System.out.println("Marca: " + a[i].getMarca());
+			}
+		}
+
+	}
+
+	public static void listarAlim(Alimento[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Nombre: " + a[i].getNom());
+				System.out.println("Fecha de vencimiento: " + a[i].getFechaVenci());
+				System.out.println("Fecha de envase: " + a[i].getFechaEnv());
+			}
+		}
+
+	}
+
+	public static void eliminarElec(Electronica[] a) {
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del producto que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static void eliminarRopa(Ropa[] a) {
+
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del producto que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static void eliminarAlim(Alimento[] a) {
+		Scanner entrada = new Scanner(System.in);
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del producto que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static boolean chequearExistenciaElec(Electronica[] a, int id) {
+
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+	}
+
+	public static void modifElec(Electronica[] a, int idN, String añofN, String nomN, String tamN, 
+			int datoModif) {
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaElec(a, id)) {
+					a[i].setId(idN);
+				}
+				if (datoModif == 2) {
+					a[i].setNom(nomN);
+				}
+				if (datoModif == 3) {
+					a[i].setAñoFabri(añofN);
+				}
+				if (datoModif == 4) {
+					a[i].setTamaño(tamN);
+				}
+			}
+		}
+
+	}
+	
+	public static boolean chequearExistenciaRopa(Ropa[]a,int id) {
+		
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+		
+		
+	}
+	
+	public static void modifRopa(Ropa[]a,int idN, String nomN, String prenN, String marcaN, int datoModif) {
+		
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaRopa(a, id)) {
+					a[i].setId(idN);
+				}
+				if (datoModif == 2) {
+					a[i].setNom(nomN);
+				}
+				if (datoModif == 3) {
+					a[i].setPrenda(prenN);
+				}
+				if (datoModif == 4) {
+					a[i].setMarca(marcaN);
+				}
+			}
+		}
+		
+	}
+	
+	public static boolean chequearExistenciaAlim(Alimento[]a, int id) {
+		
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+		
+	}
+	
+	public static void modifAlim(Alimento[]a,int idNA, String nomNA, String fechVNA, String fechENA, int datoModif) {
+		
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaAlim(a, id)) {
+					a[i].setId(idNA);
+				}
+				if (datoModif == 2) {
+					a[i].setNom(nomNA);
+				}
+				if (datoModif == 3) {
+					a[i].setFechaVenci(fechVNA);;
+				}
+				if (datoModif == 4) {
+					a[i].setFechaEnv(fechENA);;
+				}
+			}
+		}
+		
+	}
+}
