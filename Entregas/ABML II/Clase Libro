@@ -1,0 +1,30 @@
+package abml2;
+
+public class Libro extends Publicacion {
+
+	private int nroPaginas;
+	private String nombreL;
+
+	public int getNroPaginas() {
+		return nroPaginas;
+	}
+
+	public void setNroPaginas(int nroPaginas) {
+		this.nroPaginas = nroPaginas;
+	}
+
+	public String getNombreL() {
+		return nombreL;
+	}
+
+	public void setNombreL(String nombreL) {
+		this.nombreL = nombreL;
+	}
+
+	public Libro(int id, String autor, int nroPaginas, String nombreL) {
+		super(id, autor);
+		this.nroPaginas = nroPaginas;
+		this.nombreL = nombreL;
+	}
+
+}
