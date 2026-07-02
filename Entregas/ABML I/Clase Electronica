@@ -1,0 +1,30 @@
+package abml;
+
+public class Electronica extends Producto {
+
+	private String añoFabri;
+	private String tamaño;
+
+	public String getAñoFabri() {
+		return añoFabri;
+	}
+
+	public void setAñoFabri(String añoFabri) {
+		this.añoFabri = añoFabri;
+	}
+
+	public String getTamaño() {
+		return tamaño;
+	}
+
+	public void setTamaño(String tamaño) {
+		this.tamaño = tamaño;
+	}
+
+	public Electronica(int id, String nom, String añoFabri, String tamaño) {
+		super(id, nom);
+		this.añoFabri = añoFabri;
+		this.tamaño = tamaño;
+	}
+
+}
