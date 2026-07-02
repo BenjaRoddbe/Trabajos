@@ -1,0 +1,514 @@
+package abml2;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+
+		Libro arregloLibro[] = new Libro[10];
+		Revista arregloRevista[] = new Revista[10];
+		Articulo_Cientifico arregloArt[] = new Articulo_Cientifico[10];
+		int opcion = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese una opción:");
+			System.out.println("1-Ingresar un libro");
+			System.out.println("2-Ingresar una revista");
+			System.out.println("3-Ingresar un artículo científico");
+			System.out.println("-----------------------");
+			System.out.println("4-Listar libro(s)");
+			System.out.println("5-Listar revista(s)");
+			System.out.println("6-Listar artículo(s)");
+			System.out.println("-----------------------");
+			System.out.println("7-Eliminar un producto");
+			System.out.println("8-Modificar un producto");
+			System.out.println("-----------------------");
+			System.out.println("9-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese el id del libro:");
+				int idL = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autL = entrada.next();
+				System.out.println("Ingrese el número de páginas:");
+				int nroP = entrada.nextInt();
+				System.out.println("Ingrese el nombre del libro:");
+				String nom = entrada.next();
+				altaLibro(arregloLibro, idL, autL, nroP, nom);
+				break;
+			}
+			case 2: {
+				System.out.println("Ingrese el id de la revista:");
+				int idR = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autR = entrada.next();
+				System.out.println("Ingrese el número de edición:");
+				int nroE = entrada.nextInt();
+				System.out.println("Ingrese la fecha de publicación:");
+				System.out.println("De este modo: 12ENERO2026");
+				String fechP = entrada.next();
+				altaRevista(arregloRevista, idR, autR, nroE, fechP);
+				break;
+			}
+			case 3: {
+				System.out.println("Ingrese el id del artículo:");
+				int idA = entrada.nextInt();
+				System.out.println("Ingrese el autor:");
+				String autA = entrada.next();
+				System.out.println("Ingrese el idioma del artículo:");
+				String idiom = entrada.next();
+				System.out.println("Ingrese el área del artículo (biología, matemáticas, social, etc.)");
+				String area = entrada.next();
+				altaArt(arregloArt, idA, autA, idiom, area);
+				break;
+			}
+			case 4: {
+				listarLibro(arregloLibro);
+				break;
+			}
+			case 5: {
+				listarRevista(arregloRevista);
+				break;
+			}
+			case 6: {
+				listarArt(arregloArt);
+				break;
+			}
+			case 7: {
+				System.out.println("Ingrese la cat. de la que desea elminiar un producto.");
+				System.out.println("1-Libro");
+				System.out.println("2-Revista");
+				System.out.println("3-Artículo Científico");
+				int opcion1 = entrada.nextInt();
+				do {
+					switch (opcion1) {
+					case 1: {
+						elimLibro(arregloLibro);
+						opcion1 = 4;
+						break;
+
+					}
+					case 2: {
+						elimRevista(arregloRevista);
+						opcion1 = 4;
+						break;
+					}
+					case 3: {
+						elimArt(arregloArt);
+						opcion1 = 4;
+						break;
+					}
+					default:
+						System.out.println("Error");
+
+						break;
+
+					}
+
+				} while (opcion1 != 4);
+
+				break;
+			}
+			case 8: {
+				System.out.println("Ingrese la cat. de la que desea modificar un producto.");
+				System.out.println("1-Libro");
+				System.out.println("2-Revista");
+				System.out.println("3-Artículo Científico");
+				int opcion2 = entrada.nextInt();
+				do {
+					switch (opcion2) {
+					case 1: {
+
+						System.out.println("Ingrese el dato que desea modificar:");
+						System.out.println("1-Id");
+						System.out.println("2-Autor");
+						System.out.println("3-Número de páginas");
+						System.out.println("4-Nombre");
+						int idNL = 0;
+						String autL = "";
+						int nroPN = 0;
+						String nomN = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idNL = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomN = entrada.next();
+						}
+						if (datoModif == 3) {
+							System.out.println("Ingrese el nuevo número de páginas");
+							nroPN = entrada.nextInt();
+						}
+						if (datoModif == 4) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomN = entrada.next();
+						}
+						modifLibro(arregloLibro, idNL, autL, nroPN, nomN, datoModif);
+						opcion2 = 4;
+						break;
+
+					}
+					case 2:{
+						System.out.println("Ingrese el dato que desea modifcar:");
+						System.out.println("1-Id");
+						System.out.println("2-Nombre");
+						System.out.println("3-Número de edición");
+						System.out.println("4-Fecha de publicación");
+						int idNR = 0;
+						String autNR = "";
+						int nroEN = 0;
+						String fechPN = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idNR = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo autor:");
+							autNR = entrada.next();
+						}
+						if(datoModif == 3) {
+							System.out.println("Ingrese el nuevo número de edición:");
+							nroEN = entrada.nextInt();
+						}
+						if(datoModif == 4) {
+							System.out.println("Ingrese la nueva fecha de publicación:");
+							System.out.println("De este modo, ej: 12ENERO2026");
+							fechPN = entrada.next();
+						}
+						modifRevista(arregloRevista, idNR, autNR, nroEN, fechPN, datoModif);
+						opcion2 = 4;
+						break;
+					}
+					case 3:{
+						System.out.println("Ingrese el dato que desea modifcar:");
+						System.out.println("1-Id");
+						System.out.println("2-Nombre");
+						System.out.println("3-Idioma");
+						System.out.println("4-Área");
+						int idNA = 0;
+						String nomNA = "";
+						String idiomN = "";
+						String areaN = "";
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idNA = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese el nuevo nombre:");
+							nomNA = entrada.next();
+						}
+						if(datoModif == 3) {
+							System.out.println("Ingrese el nuevo idioma:");
+							idiomN = entrada.next();
+
+						}
+						if(datoModif == 4) {
+							System.out.println("Ingrese el nuevo área:");
+							areaN = entrada.next();
+						}
+						modifArt(arregloArt, idNA, nomNA,idiomN, areaN,datoModif);
+						opcion2 = 4;
+						break;
+					}
+
+					default:
+						System.out.println("Error");
+						break;
+					}
+
+				} while (opcion2 != 4);
+				break;
+			}
+			case 9: {
+				System.out.println("Adios");
+				break;
+			}
+
+			default:
+				System.out.println("Error");
+				break;
+			}
+
+		} while (opcion != 10);
+	}
+
+	public static void altaLibro(Libro[] a, int idL, String autL, int nroP, String nom) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Libro(idL, autL, nroP, nom);
+				break;
+			}
+		}
+
+	}
+
+	public static void altaRevista(Revista[] a, int idR, String autR, int nroE, String fechP) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Revista(idR, autR, nroE, fechP);
+				break;
+			}
+		}
+
+	}
+
+	public static void altaArt(Articulo_Cientifico[] a, int idA, String autA, String idiom, String area) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Articulo_Cientifico(idA, autA, idiom, area);
+				break;
+			}
+		}
+
+	}
+
+	public static void listarLibro(Libro[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Autor: " + a[i].getAutor());
+				System.out.println("Número de páginas: " + a[i].getNroPaginas());
+				System.out.println("Nombre del libro: " + a[i].getNombreL());
+			}
+		}
+
+	}
+
+	public static void listarRevista(Revista[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Autor: " + a[i].getAutor());
+				System.out.println("Número de edición: " + a[i].getNroEdicion());
+				System.out.println("Fecha de publicación: " + a[i].getFechaPubli());
+			}
+		}
+
+	}
+
+	public static void listarArt(Articulo_Cientifico[] a) {
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Autor: " + a[i].getAutor());
+				System.out.println("Idioma: " + a[i].getIdioma());
+				System.out.println("Área: " + a[i].getArea());
+			}
+		}
+
+	}
+
+	public static void elimLibro(Libro[] a) {
+
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del libro que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static void elimRevista(Revista[] a) {
+
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del libro que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static void elimArt(Articulo_Cientifico[] a) {
+
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del libro que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+
+	}
+
+	public static boolean chequearExistenciaLibro(Libro[] a, int id) {
+
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+	}
+
+	public static void modifLibro(Libro[] a, int idLN, String autLN, int nroN, String nomN, int datoModif) {
+
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaLibro(a, id)) {
+					a[i].setId(idLN);
+				}
+				if (datoModif == 2) {
+					a[i].setAutor(autLN);
+					;
+				}
+				if (datoModif == 3) {
+					a[i].setNroPaginas(nroN);
+					;
+				}
+				if (datoModif == 4) {
+					a[i].setNombreL(nomN);
+					;
+				}
+			}
+		}
+
+	}
+
+	public static boolean chequearExistenciaRevista(Revista[] a, int id) {
+
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+
+	}
+
+	public static void modifRevista(Revista[] a, int idNR, String autNR, int nroEN, String fechPN, int datoModif) {
+
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaRevista(a, id)) {
+					a[i].setId(idNR);
+				}
+				if (datoModif == 2) {
+					a[i].setAutor(autNR);
+					;
+				}
+				if (datoModif == 3) {
+					a[i].setNroEdicion(nroEN);
+					;
+					;
+				}
+				if (datoModif == 4) {
+					a[i].setFechaPubli(fechPN);
+					;
+					;
+				}
+			}
+		}
+
+	}
+
+	public static boolean chequearExistenciaArt(Articulo_Cientifico[] a, int id) {
+
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+
+	}
+
+	public static void modifArt(Articulo_Cientifico[] a, int idAN, String autAN, String idiomN, String areaN,
+			int datoModif) {
+
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaArt(a, id)) {
+					a[i].setId(idAN);
+				}
+				if (datoModif == 2) {
+					a[i].setAutor(autAN);
+					;
+				}
+				if (datoModif == 3) {
+					a[i].setIdioma(idiomN);
+					;
+				}
+				if (datoModif == 4) {
+					a[i].setArea(areaN);
+					;
+				}
+			}
+		}
+
+	}
+
+}
