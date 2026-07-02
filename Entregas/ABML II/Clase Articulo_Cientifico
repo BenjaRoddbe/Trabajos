@@ -1,0 +1,30 @@
+package abml2;
+
+public class Articulo_Cientifico extends Publicacion {
+
+	private String idioma;
+	private String area;
+
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public Articulo_Cientifico(int id, String autor, String idioma, String area) {
+		super(id, autor);
+		this.idioma = idioma;
+		this.area = area;
+	}
+
+}
