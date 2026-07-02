@@ -1,0 +1,30 @@
+package abml;
+
+public class Alimento extends Producto {
+
+	private String fechaVenci;
+	private String fechaEnv;
+
+	public String getFechaVenci() {
+		return fechaVenci;
+	}
+
+	public void setFechaVenci(String fechaVenci) {
+		this.fechaVenci = fechaVenci;
+	}
+
+	public String getFechaEnv() {
+		return fechaEnv;
+	}
+
+	public void setFechaEnv(String fechaEnv) {
+		this.fechaEnv = fechaEnv;
+	}
+
+	public Alimento(int id, String nom, String fechaVenci, String fechaEnv) {
+		super(id, nom);
+		this.fechaVenci = fechaVenci;
+		this.fechaEnv = fechaEnv;
+	}
+
+}
