@@ -1,0 +1,30 @@
+package abml3;
+
+public class Casa extends Edificio {
+
+	private int nroHabitaciones;
+	private int nroPisos;
+
+	public int getNroHabitaciones() {
+		return nroHabitaciones;
+	}
+
+	public void setNroHabitaciones(int nroHabitaciones) {
+		this.nroHabitaciones = nroHabitaciones;
+	}
+
+	public int getNroPisos() {
+		return nroPisos;
+	}
+
+	public void setNroPisos(int nroPisos) {
+		this.nroPisos = nroPisos;
+	}
+
+	public Casa(int id, String calle, int nroHabitaciones, int nroPisos) {
+		super(id, calle);
+		this.nroHabitaciones = nroHabitaciones;
+		this.nroPisos = nroPisos;
+	}
+
+}
