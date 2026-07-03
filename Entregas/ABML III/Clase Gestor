@@ -1,0 +1,353 @@
+package abml3;
+
+import java.util.Scanner;
+
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		
+		Casa arregloCasa[] = new Casa[10];
+		Apartamento arregloApart[] = new Apartamento[10];
+		int opcion = 0;
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese una opción:");
+			System.out.println("1-Ingresar una casa");
+			System.out.println("2-Ingresar un apartamento");
+			System.out.println("-----------------------");
+			System.out.println("3-Listar casa(s)");
+			System.out.println("4-Listar apartamento(s)");
+			System.out.println("-----------------------");
+			System.out.println("5-Eliminar un producto");
+			System.out.println("6-Modificar un producto");
+			System.out.println("-----------------------");
+			System.out.println("7-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese el id de la casa:");
+				int idC = entrada.nextInt();
+				System.out.println("Ingrese la calle:");
+				String calleC = entrada.next();
+				System.out.println("Ingrese el número de habitaciones:");
+				int nroH = entrada.nextInt();
+				System.out.println("Ingrese el número de pisos:");
+				int nroP = entrada.nextInt();
+				altaCasa(arregloCasa, idC, calleC, nroH, nroP);
+				break;
+				
+			}
+			case 2:{
+				System.out.println("Ingrese el id del apartamento:");
+				int idA = entrada.nextInt();
+				System.out.println("Ingrese la calle:");
+				String calleA = entrada.next();
+				System.out.println("Ingrese el número de apartamentos:");
+				int nroA = entrada.nextInt();
+				System.out.println("Ingrese el número de habitantes:");
+				int nroHa = entrada.nextInt();
+				altaApart(arregloApart, idA, calleA, nroA, nroHa);
+				break;
+			}
+			case 3:{
+				listarCasa(arregloCasa);
+				break;
+			}
+			case 4:{
+				listarApart(arregloApart);
+				break;
+			}
+			case 5:{
+				System.out.println("Ingrese la cat. de la que desea elminiar un producto.");
+				System.out.println("1-Casa");
+				System.out.println("2-Apartamento");
+				int opcion1 = entrada.nextInt();
+				do {
+					switch (opcion1) {
+					case 1: {
+						elimCasa(arregloCasa);
+						opcion1 = 3;
+						break;
+					}
+					case 2:{
+						elimApart(arregloApart);
+						opcion1 = 3;
+						break;
+					}
+					default:
+						System.out.println("Error");
+						break;
+					}
+				} while (opcion1!=3);
+				
+			}break;
+			case 6:{
+				System.out.println("Ingrese la cat. de la que desea modificar un producto.");
+				System.out.println("1-Casa");
+				System.out.println("2-Apartamento");
+				int opcion2 = entrada.nextInt();
+				do {
+					switch (opcion2) {
+					case 1: {
+						System.out.println("Ingrese el dato que desea modificar:");
+						System.out.println("1-Id");
+						System.out.println("2-Calle");
+						System.out.println("3-Número de habitaciones");
+						System.out.println("4-Número de pisos");
+						int idCN = 0;
+						String calleCN = "";
+						int nroHN = 0;
+						int nroPN = 0;
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idCN = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese la nueva calle:");
+							calleCN = entrada.next();
+						}
+						if (datoModif == 3) {
+							System.out.println("Ingrese el nuevo número de habitaciones");
+							nroHN = entrada.nextInt();
+						}
+						if (datoModif == 4) {
+							System.out.println("Ingrese el nuevo número de pisos:");
+							nroPN = entrada.nextInt();
+						}
+						modifCasa(arregloCasa, idCN, calleCN, nroHN, nroPN, datoModif);
+						opcion2 = 3;
+						break;
+					}
+					case 2:{
+						System.out.println("Ingrese el dato que desea modificar:");
+						System.out.println("1-Id");
+						System.out.println("2-Calle");
+						System.out.println("3-Número de apartamentos");
+						System.out.println("4-Número de habitantes");
+						int idAN = 0;
+						String calleAN = "";
+						int nroAN = 0;
+						int nroHaN = 0;
+						int datoModif = entrada.nextInt();
+						if (datoModif == 1) {
+							System.out.println("Ingrese el nuevo id:");
+							idAN = entrada.nextInt();
+						}
+						if (datoModif == 2) {
+							System.out.println("Ingrese la nueva calle:");
+							calleAN = entrada.next();
+						}
+						if (datoModif == 3) {
+							System.out.println("Ingrese el nuevo número de apartamentos");
+							nroAN = entrada.nextInt();
+						}
+						if (datoModif == 4) {
+							System.out.println("Ingrese el nuevo número de habitantes:");
+							nroHaN = entrada.nextInt();
+						}
+						modifApart(arregloApart, idAN, calleAN, nroAN, nroHaN, datoModif);
+						opcion2 = 3;
+						break;
+					}
+					default:
+						System.out.println("Error");
+						break;
+					}
+				} while (opcion2!=3);
+			}break;
+			case 7:{
+				System.out.println("Adios");
+				break;
+			}
+			default:
+				System.out.println("Error");
+				break;
+			}
+		} while (opcion != 8);
+		
+
+	}
+	
+	public static void altaCasa(Casa[]a,int idC, String calleC, int nroH, int nroP) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Casa(idC, calleC, nroH, nroP);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void altaApart(Apartamento[]a,int idA, String calleA, int nroA, int nroHa) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+
+			} else {
+				a[i] = new Apartamento(idA, calleA, nroA, nroHa);
+				break;
+			}
+		}
+		
+	}
+	
+	public static void listarCasa(Casa[]a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Calle: " + a[i].getCalle());
+				System.out.println("Número de habitacioes: " + a[i].getNroHabitaciones());
+				System.out.println("Número de pisos: " + a[i].getNroPisos());
+			}
+		}
+	}
+	
+	public static void listarApart(Apartamento[]a) {
+		
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("ID: " + a[i].getId());
+				System.out.println("Calle: " + a[i].getCalle());
+				System.out.println("Número de apartamentos: " + a[i].getNroApartamentos());
+				System.out.println("Número de habitantes: " + a[i].getNroHabitantes());
+			}
+		}
+		
+	}
+	
+	public static void elimCasa(Casa[]a) {
+		
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id de la casa que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+		
+	}
+	
+	public static void elimApart(Apartamento[]a) {
+		
+		Scanner entrada = new Scanner(System.in);
+
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				System.out.println("Posición N° " + i + "ID:" + a[i].getId());
+			}
+		}
+		System.out.println("Ingrese el id del apartamento que desea eliminar:");
+		int id = entrada.nextInt();
+
+		for (int o = 0; o < a.length; o++) {
+			if (a[o] != null) {
+				if (a[o] != null && id == a[o].getId()) {
+					a[o] = null;
+
+				}
+			}
+		}
+		
+	}
+	
+	public static boolean chequearExistenciaCasa(Casa[]a, int id) {
+		
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+		
+	}
+	
+	public static void modifCasa(Casa[]a, int idCN, String calleCN, int nroHN, int nroPN, int datoModif) {
+		
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaCasa(a, id)) {
+					a[i].setId(idCN);
+				}
+				if (datoModif == 2) {
+					a[i].setCalle(calleCN);;
+					;
+				}
+				if (datoModif == 3) {
+					a[i].setNroHabitaciones(nroHN);;
+					;
+				}
+				if (datoModif == 4) {
+					a[i].setNroPisos(nroPN);;
+					;
+				}
+			}
+		}
+		
+	}
+	
+	public static boolean chequearExistenciaApart(Apartamento[]a, int id) {
+		
+		boolean existe = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null && a[i].getId() == id) {
+
+				existe = true;
+				System.out.println("Ya existe un producto con ese id");
+				break;
+			}
+		}
+		return existe;
+		
+	}
+	
+	public static void modifApart(Apartamento[]a, int idAN, String calleAN, int nroAN, int nroHaN, int datoModif) {
+		
+		Scanner entrada = new Scanner(System.in);
+		int id = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != null) {
+				if (datoModif == 1 && !chequearExistenciaApart(a, id)) {
+					a[i].setId(idAN);
+				}
+				if (datoModif == 2) {
+					a[i].setCalle(calleAN);;
+					;
+				}
+				if (datoModif == 3) {
+					a[i].setNroApartamentos(nroAN);;
+					;
+				}
+				if (datoModif == 4) {
+					a[i].setNroHabitantes(nroHaN);;
+					;
+				}
+			}
+		}
+		
+	}
+
+}
