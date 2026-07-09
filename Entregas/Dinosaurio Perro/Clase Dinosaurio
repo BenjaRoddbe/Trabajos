@@ -1,0 +1,42 @@
+package interfaceJuego;
+
+public class Dinosaurio implements Acciones {
+
+	private String nomD;
+	private int years;
+
+	public String getNomD() {
+		return nomD;
+	}
+
+	public void setNomD(String nomD) {
+		this.nomD = nomD;
+	}
+
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
+	}
+
+	public Dinosaurio(String nomD, int years) {
+		super();
+		this.nomD = nomD;
+		this.years = years;
+	}
+
+	@Override
+	public void comer() {
+
+		System.out.println("El dinosaurio comió 70k de carne");
+	}
+
+	@Override
+	public void dormir() {
+
+		System.out.println("El dinosaurio duerme 9 horas");
+	}
+
+}
