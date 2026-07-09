@@ -1,0 +1,52 @@
+package interfaceJuego;
+
+import java.util.Scanner;
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+
+		Dinosaurio dinosaurio1 = new Dinosaurio("Mateo",10);
+		Perro perro1 = new Perro("Ramiro",5);
+		int opcion = 0;
+		
+		do {
+			System.out.println("Binevenido");
+			System.out.println("Ingrese una opción");
+			System.out.println("1-Hacer comer al dinosaurio");
+			System.out.println("2-Hacer dormir al dinosaurio");
+			System.out.println("3-Hacer comer al perro");
+			System.out.println("4-Hacer dormir al perro");
+			System.out.println("5-Salir");
+			opcion = entrada.nextInt();
+			switch (opcion) {
+			case 1: {
+				dinosaurio1.comer();
+				break;
+			}
+			case 2:{
+				dinosaurio1.dormir();
+				break;
+			}
+			case 3: {
+				perro1.comer();
+				break;
+			}
+			case 4:{
+				perro1.dormir();
+				break;
+			}
+			case 5:{
+				System.out.println("Adios");
+				break;
+			}
+			default:{
+				System.out.println("Error");
+				break;
+			}
+			}
+		} while (opcion!=5);
+	}
+
+}
