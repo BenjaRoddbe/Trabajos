@@ -1,0 +1,44 @@
+package interfaceJuego;
+
+public class Perro implements Acciones {
+
+	private String nomP;
+	private int years;
+
+	public String getNomP() {
+		return nomP;
+	}
+
+	public void setNomP(String nomP) {
+		this.nomP = nomP;
+	}
+
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
+	}
+
+	public Perro(String nomP, int years) {
+		super();
+		this.nomP = nomP;
+		this.years = years;
+	}
+
+	@Override
+	public void comer() {
+
+		System.out.println("El perro comió 700g de carne");
+
+	}
+
+	@Override
+	public void dormir() {
+
+		System.out.println("El perro durmió 12 horas");
+
+	}
+
+}
