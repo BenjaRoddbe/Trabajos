@@ -1,0 +1,11 @@
+package interfaceTrabajo;
+
+public interface MandarMail {
+	
+	void mailDuenio(int cargo);
+	void mailEncargado(int cargo);
+	void mailEmpleado(int cargo);
+	
+	
+
+}
