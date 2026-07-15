@@ -1,0 +1,43 @@
+package interfaceTrabajo;
+
+public class Empleado implements MandarMail {
+
+	private String nomE;
+
+	public String getNomE() {
+		return nomE;
+	}
+
+	public void setNomE(String nomE) {
+		this.nomE = nomE;
+	}
+
+	public Empleado(String nomE) {
+		super();
+		this.nomE = nomE;
+	}
+
+	@Override
+	public void mailDuenio(int cargo) {
+		
+		System.out.println("No puedes enviar un mail al Dueño, comunícate con un Encargado");
+		
+	}
+
+	@Override
+	public void mailEncargado(int cargo) {
+		
+		System.out.println("Mail enviado");
+		
+	}
+
+	@Override
+	public void mailEmpleado(int cargo) {
+		
+
+		
+	}
+
+	
+
+}
