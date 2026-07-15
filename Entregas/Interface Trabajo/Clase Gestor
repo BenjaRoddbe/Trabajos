@@ -1,0 +1,78 @@
+package interfaceTrabajo;
+
+import java.util.Scanner;
+
+
+public class Gestor {
+
+
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		
+		Dueño dueño1 = new Dueño(null);
+		Encargado encargado1 = new Encargado(null);
+		Empleado empleado1 = new Empleado(null);
+		
+		int opcion = 0;
+		
+		do {
+			System.out.println("Bienvenido");
+			System.out.println("Ingrese su cargo");
+			System.out.println("1-Dueño");
+			System.out.println("2-Encargado");
+			System.out.println("3-Empleado");
+			System.out.println("4-Salir");
+			opcion = entrada.nextInt();
+			
+			switch (opcion) {
+			case 1: {
+				System.out.println("Ingrese una opción:");
+				System.out.println("1-Enviar mail a encargado");
+				System.out.println("2-Enviar mail a empleado");
+				int opcion2 = entrada.nextInt();
+				if(opcion2 == 1) {
+					dueño1.mailEncargado(opcion2);
+				}
+				if(opcion2 == 2) {
+					dueño1.mailEmpleado(opcion2);
+				}
+			}break;
+			case 2:{
+				System.out.println("Ingrese una opción:");
+				System.out.println("1-Enviar mail a dueño");
+				System.out.println("2-Enviar mail a empleado");
+				int opcion3 = entrada.nextInt();
+				if(opcion3 == 1) {
+					encargado1.mailDuenio(opcion3);
+				}
+				if(opcion3 == 2) {
+					encargado1.mailEmpleado(opcion3);
+				}
+			}break;
+			case 3:{
+				System.out.println("Ingrese una opción:");
+				System.out.println("1-Enviar mail a dueño");
+				System.out.println("2-Enviar mail a encargado");
+				int opcion4 = entrada.nextInt();
+				if(opcion4 == 1) {
+					empleado1.mailDuenio(opcion4);
+				}
+				if(opcion4 == 2) {
+					empleado1.mailEncargado(opcion4);
+				}
+				
+			}break;
+			case 4:{
+				System.out.println("Adios");
+				break;
+			}
+				
+			default:
+			}
+		} while (opcion!=5);
+		
+
+
+	}
+
+}
