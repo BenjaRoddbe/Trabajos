@@ -1,0 +1,13 @@
+package PracticoVentana;
+
+
+public class Gestor {
+
+	public static void main(String[] args) {
+		
+		ventanaPractico ventana2 = new ventanaPractico();
+		ventana2.setVisible(true);
+		
+	}
+
+}
