@@ -1,0 +1,85 @@
+package PracticoVentana;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.*;
+
+import javax.swing.*;
+
+public class ventanaPractico extends JFrame{
+	
+	
+	private static final String Arial = null;
+
+	public ventanaPractico(){
+		
+		this.setTitle("Registrar Usuario");
+		this.setSize(1366, 768); // tamaño en PX. primero ancho luego largo
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
+		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setResizable(true);
+		this.setLayout(new FlowLayout());
+		
+		JPanel panel0 = new JPanel();
+		panel0.setLayout(new GridLayout(0,1));
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0,1));
+		JPanel panel2 = new JPanel();
+		this.add(panel2,BorderLayout.NORTH);
+		
+		
+		JLabel et1 = new JLabel("Nombre");
+		JLabel et2 = new JLabel("Apellido");
+		JLabel et3 = new JLabel("Cédula");
+		JLabel et4 = new JLabel("Edad");
+		JLabel et5 = new JLabel("Rol");
+		JLabel et6 = new JLabel("Hola");
+		
+		et1.setFont(new Font(Arial, Font.PLAIN, 20));
+		et2.setFont(new Font(Arial, Font.PLAIN, 20));
+		et3.setFont(new Font(Arial, Font.PLAIN, 20));
+		et4.setFont(new Font(Arial, Font.PLAIN, 20));
+		et5.setFont(new Font(Arial, Font.PLAIN, 20));
+
+		
+		
+		
+		JTextField txtF1 = new JTextField(3);
+		JTextField txtF2 = new JTextField(3);
+		JTextField txtF3 = new JTextField(3);
+		JTextField txtF4 = new JTextField(3);
+		JTextField txtF5 = new JTextField(3);
+		
+		String[] rol = {"Usuario", "Administrador"};
+		JComboBox cb1 = new JComboBox(rol);
+		
+		panel0.add(et1);
+		panel0.add(et2);
+		panel0.add(et3);
+		panel0.add(et4);
+		panel0.add(et5);
+		panel0.add(et6);
+		
+		
+
+		panel1.add(txtF1);
+		panel1.add(txtF2);
+		panel1.add(txtF3);
+		panel1.add(txtF4);
+		panel1.add(cb1);
+		
+		panel2.add(bt1);
+
+		
+		
+		this.add(panel0);
+		this.add(panel1);
+		this.add(panel2);
+
+
+		
+		
+	}
+	
+
+}
