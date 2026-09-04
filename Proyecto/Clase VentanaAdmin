@@ -1,0 +1,124 @@
+package proyect;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.*;
+
+import javax.swing.*;
+
+
+public class VentanaAdmin extends JFrame{
+	
+	private static final String Arial = null;
+
+	public VentanaAdmin() {
+		
+		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
+		this.setSize(1366, 768); // tamaño en PX. primero ancho luego largo
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
+		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setResizable(true);
+		this.setLayout(new BorderLayout());
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0, 1));
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(null);
+		JPanel panel3 = new JPanel();
+
+		JButton bt1 = new JButton("ORIENTACIONES");
+		JButton bt2 = new JButton("AUDIOVISUAL");
+		JButton bt3 = new JButton("INFORMATICA");
+		JButton bt4 = new JButton("AGRARIO");
+		JButton bt5 = new JButton("CARPINTERIA");
+		JButton bt6 = new JButton("RECURSOS N.");
+		JButton bt7 = new JButton("Proyectos Destacados");
+		JButton bt8 = new JButton("Añadir Admin");
+		JButton bt9 = new JButton("Añadir Proyecto");
+
+		JLabel lbl8 = new JLabel("Proyectos recientes ");
+		JLabel lbl9 = new JLabel("Aún no hay Proyectos...");
+		//JLabel lbl10 = new JLabel("Buscar un proyecto");
+		JLabel lbl11 = new JLabel("Admin");
+		
+		JTextField txt1 = new JTextField("Buscar un proyecto");
+		
+		bt1.setBackground(Color.decode("#D1D108"));
+		bt2.setBackground(Color.decode("#D1D108"));
+		bt3.setBackground(Color.decode("#D1D108"));
+		bt4.setBackground(Color.decode("#D1D108"));
+		bt5.setBackground(Color.decode("#D1D108"));
+		bt6.setBackground(Color.decode("#D1D108"));
+		bt7.setBackground(Color.decode("#D1D108"));
+
+		panel1.add(bt1);
+		panel1.add(bt2);
+		panel1.add(bt3);
+		panel1.add(bt4);
+		panel1.add(bt5);
+		panel1.add(bt6);
+		panel1.add(bt7);
+		panel1.setBackground(Color.decode("#D1D108"));
+
+		panel2.add(lbl8);
+		panel2.add(lbl9);
+		lbl8.setBounds(410,10,800,500);
+		lbl9.setBounds(400,40,800,500);
+		lbl11.setForeground(Color.white);
+		lbl11.setFont(new Font(Arial, Font.PLAIN, 17));
+		
+		
+		
+		panel3.setLayout(null);
+		panel3.add(bt8);
+		panel3.add(bt9);
+		//panel3.add(lbl10);
+		panel3.add(lbl11);
+		panel3.add(txt1);
+		
+		bt8.setBounds(1100,4,150,45);
+		bt9.setBounds(945,4,150,45);
+		txt1.setBounds(500,4,150,45);
+		//lbl10.setBounds(500,4,150,45);
+		lbl11.setBounds(1260,4,150,45);
+		
+		
+		panel3.setBackground(Color.decode("#D1D108"));
+		panel3.setPreferredSize(new Dimension(this.getWidth(),50));
+		
+		bt8.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaAñadirAdm vtnAA1 = new VentanaAñadirAdm();
+				vtnAA1.setVisible(true);
+			
+				
+			}
+		});
+		
+		bt9.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				VentanaAñadirPry vtnAPRY = new VentanaAñadirPry();
+				vtnAPRY.setVisible(true);
+				
+			}
+		});
+		
+		
+		
+		
+
+		this.add(panel1, BorderLayout.WEST);
+		this.add(panel2);
+		this.add(panel3, BorderLayout.NORTH);
+	
+		
+		
+		
+	}
+
+}
