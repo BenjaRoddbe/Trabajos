@@ -1,0 +1,21 @@
+
+package proyect;
+
+
+public class Gestor {
+
+	
+	public static void main(String[] args) {
+		
+		VentanaAdmin vtnA = new VentanaAdmin();
+		vtnA.setVisible(true);
+		
+		vInicioSesion vtn = new vInicioSesion();
+		vtn.setVisible(false);
+		
+		VentanaAñadirAdm vtnAA = new VentanaAñadirAdm();
+		vtnAA.setVisible(false);
+		
+	}
+
+}
