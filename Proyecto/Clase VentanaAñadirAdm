@@ -1,0 +1,57 @@
+package proyect;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VentanaAñadirAdm extends JFrame{
+	
+	private static final String Arial = null;
+
+	public VentanaAñadirAdm() {
+		
+		this.setTitle("Añadir Admin"); // establece el titulo de la ventana
+		this.setSize(600, 600); // tamaño en PX. primero ancho luego largo
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
+		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setResizable(true);
+		this.setLayout(new GridLayout(0,1));
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0,1));
+		
+		JLabel lbl1 = new JLabel("INGRESE EL NUEVO ADMIN");
+		JLabel lbl2 = new JLabel("CI/Sin puntos ni guiones:");
+		JLabel lbl3 = new JLabel("Contraseña:");
+		
+		
+		JTextField txt1 = new JTextField(4);
+		JTextField txt2 = new JTextField(4);
+		
+		JButton bt1 = new JButton("GUARDAR");
+		
+		lbl1.setFont(new Font(Arial, Font.PLAIN, 20));
+		
+		panel1.add(lbl1);
+		panel1.add(lbl2);
+		panel1.add(txt1);
+		panel1.add(lbl3);	
+		panel1.add(txt2);
+		panel1.add(bt1);
+		
+		panel1.setBackground(Color.decode("#D1D108"));
+		
+		bt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
+			}
+		});
+		this.add(panel1);
+	}
+
+}
+
