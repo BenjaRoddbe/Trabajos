@@ -1,0 +1,63 @@
+package proyect;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class VentanaAñadirPry extends JFrame{
+	
+	private static final String Arial = null;
+	
+	public VentanaAñadirPry() {
+		
+		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
+		this.setSize(600, 600); // tamaño en PX. primero ancho luego largo
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
+		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setResizable(true);
+		this.setLayout(new GridLayout(0,1));
+		
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0,1));
+		
+		JLabel lbl1 = new JLabel("INGRESE EL NUEVO PROYECTO");
+		JTextField txt1 = new JTextField("Nombre del Proyecto");
+		JTextField txt2 = new JTextField("Tema del Proyecto");
+		JTextField txt3 = new JTextField("Año de realización");
+		JTextField txt4 = new JTextField("Autores del Proyecto");
+		
+		
+		
+		JButton bt1 = new JButton("GUARDAR");
+		
+		lbl1.setFont(new Font(Arial, Font.PLAIN, 20));
+		
+		panel1.add(lbl1);
+		//panel1.add(lbl2);
+		panel1.add(txt1);
+		//panel1.add(lbl3);	
+		panel1.add(txt2);
+		panel1.add(txt3);
+		panel1.add(txt4);
+		panel1.add(bt1);
+		
+		panel1.setBackground(Color.decode("#D1D108"));
+		
+		bt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
+			}
+		});
+		this.add(panel1);
+	}
+
+}
