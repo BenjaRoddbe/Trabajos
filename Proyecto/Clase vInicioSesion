@@ -1,0 +1,62 @@
+package proyect;
+
+import java.awt.*;
+import java.awt.color.*;
+
+import javax.swing.*;
+
+public class vInicioSesion extends JFrame {
+
+	public vInicioSesion() {
+
+		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
+		this.setSize(1366, 768); // tamaño en PX. primero ancho luego largo
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
+		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setResizable(true);
+		this.setLayout(new BorderLayout());
+
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(0, 1));
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
+
+		JButton bt1 = new JButton("ORIENTACIONES");
+		JButton bt2 = new JButton("AUDIOVISUAL");
+		JButton bt3 = new JButton("INFORMATICA");
+		JButton bt4 = new JButton("AGRARIO");
+		JButton bt5 = new JButton("CARPINTERIA");
+		JButton bt6 = new JButton("RECURSOS N.");
+		JButton bt7 = new JButton("Proyectos Destacados");
+
+		JLabel lbl8 = new JLabel("Proyectos recientes " + " Aún no hay proyectos...");
+		JLabel lbl10 = new JLabel("Buscar un proyecto");
+
+		bt1.setBackground(Color.decode("#D1D108"));
+		bt2.setBackground(Color.decode("#D1D108"));
+		bt3.setBackground(Color.decode("#D1D108"));
+		bt4.setBackground(Color.decode("#D1D108"));
+		bt5.setBackground(Color.decode("#D1D108"));
+		bt6.setBackground(Color.decode("#D1D108"));
+		bt7.setBackground(Color.decode("#D1D108"));
+
+		panel1.add(bt1);
+		panel1.add(bt2);
+		panel1.add(bt3);
+		panel1.add(bt4);
+		panel1.add(bt5);
+		panel1.add(bt6);
+		panel1.add(bt7);
+		panel1.setBackground(Color.decode("#D1D108"));
+
+		panel2.add(lbl8);
+
+		panel3.add(lbl10);
+		panel3.setBackground(Color.decode("#D1D108"));
+
+		this.add(panel1, BorderLayout.WEST);
+		this.add(panel2, BorderLayout.SOUTH);
+		this.add(panel3, BorderLayout.NORTH);
+	}
+
+}
