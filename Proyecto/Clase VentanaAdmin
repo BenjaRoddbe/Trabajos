@@ -26,7 +26,7 @@ public class VentanaAdmin extends JFrame{
 		panel2.setLayout(null);
 		JPanel panel3 = new JPanel();
 
-		JButton bt1 = new JButton("ORIENTACIONES");
+		JLabel lbl1 = new JLabel("         ORIENTACIONES");
 		JButton bt2 = new JButton("AUDIOVISUAL");
 		JButton bt3 = new JButton("INFORMATICA");
 		JButton bt4 = new JButton("AGRARIO");
@@ -37,13 +37,13 @@ public class VentanaAdmin extends JFrame{
 		JButton bt9 = new JButton("Añadir Proyecto");
 
 		JLabel lbl8 = new JLabel("Proyectos recientes ");
-		JLabel lbl9 = new JLabel("Aún no hay Proyectos...");
-		//JLabel lbl10 = new JLabel("Buscar un proyecto");
+		JLabel lbl9 = new JLabel("____________________");
+		JLabel lbl10 = new JLabel("Aún no hay Proyectos...");
 		JLabel lbl11 = new JLabel("Admin");
 		
 		JTextField txt1 = new JTextField("Buscar un proyecto");
 		
-		bt1.setBackground(Color.decode("#D1D108"));
+		lbl1.setBackground(Color.decode("#D1D108"));
 		bt2.setBackground(Color.decode("#D1D108"));
 		bt3.setBackground(Color.decode("#D1D108"));
 		bt4.setBackground(Color.decode("#D1D108"));
@@ -51,7 +51,7 @@ public class VentanaAdmin extends JFrame{
 		bt6.setBackground(Color.decode("#D1D108"));
 		bt7.setBackground(Color.decode("#D1D108"));
 
-		panel1.add(bt1);
+		panel1.add(lbl1);
 		panel1.add(bt2);
 		panel1.add(bt3);
 		panel1.add(bt4);
@@ -59,11 +59,14 @@ public class VentanaAdmin extends JFrame{
 		panel1.add(bt6);
 		panel1.add(bt7);
 		panel1.setBackground(Color.decode("#D1D108"));
+		
 
 		panel2.add(lbl8);
 		panel2.add(lbl9);
+		panel2.add(lbl10);
 		lbl8.setBounds(410,10,800,500);
-		lbl9.setBounds(400,40,800,500);
+		lbl9.setBounds(400,20,800,500);
+		lbl10.setBounds(400,40,800,500);
 		lbl11.setForeground(Color.white);
 		lbl11.setFont(new Font(Arial, Font.PLAIN, 17));
 		
