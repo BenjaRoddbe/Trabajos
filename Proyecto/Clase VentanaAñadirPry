@@ -3,11 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+
 
 public class VentanaAñadirPry extends JFrame{
 	
@@ -27,10 +24,15 @@ public class VentanaAñadirPry extends JFrame{
 		panel1.setLayout(new GridLayout(0,1));
 		
 		JLabel lbl1 = new JLabel("INGRESE EL NUEVO PROYECTO");
+		
 		JTextField txt1 = new JTextField("Nombre del Proyecto");
 		JTextField txt2 = new JTextField("Tema del Proyecto");
 		JTextField txt3 = new JTextField("Año de realización");
 		JTextField txt4 = new JTextField("Autores del Proyecto");
+		
+		
+		String[] cursos = {"Elija el curso","Audiovisual", "Informática", "Agrario", "Carpintería", "Recursos N."};
+		JComboBox cbx1 = new JComboBox(cursos);
 		
 		
 		
@@ -39,9 +41,8 @@ public class VentanaAñadirPry extends JFrame{
 		lbl1.setFont(new Font(Arial, Font.PLAIN, 20));
 		
 		panel1.add(lbl1);
-		//panel1.add(lbl2);
-		panel1.add(txt1);
-		//panel1.add(lbl3);	
+		panel1.add(cbx1);
+		panel1.add(txt1);	
 		panel1.add(txt2);
 		panel1.add(txt3);
 		panel1.add(txt4);
