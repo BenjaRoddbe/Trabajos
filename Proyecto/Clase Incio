@@ -1,0 +1,110 @@
+package PrimeraGUI;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Inicio extends JFrame {
+	public Inicio() {
+		this.setTitle("Inicio Sesión - Proyecto Final");
+		this.setSize(1440, 720);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setResizable(true);
+		this.setLayout(new BorderLayout());
+
+		JPanel panelIzq = new JPanel();
+		JPanel panelIzqAr = new JPanel();
+		JPanel panelIzqMedio = new JPanel();
+		JPanel panelIzqAb = new JPanel();
+
+		JPanel panelDer = new JPanel();
+
+		// PANEL IZQUIERDA
+		ImageIcon imagenANEP = new ImageIcon("AnepLogo.png");
+		Image tamañoANEP = imagenANEP.getImage().getScaledInstance(270, 30, Image.SCALE_SMOOTH);
+		ImageIcon imagenANEPRedimensionado = new ImageIcon(tamañoANEP);
+
+		JLabel AnepUTU = new JLabel(imagenANEPRedimensionado);
+		AnepUTU.setBounds(100, 800, 2000, 2000);
+
+		// LOGO UTU Y BIENVENIDA (PANEL SUPERIOR IZQUIERDO)
+		ImageIcon imagenLOGO = new ImageIcon("utuLOGO.png");
+		Image tamañoLOGO = imagenLOGO.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+		ImageIcon imagenLOGORedimensionado = new ImageIcon(tamañoLOGO);
+
+		JLabel logoUTU = new JLabel(imagenLOGORedimensionado);
+		logoUTU.setBounds(200, 200, 1000, 1000);
+		logoUTU.setBackground(Color.RED);
+
+		JLabel bienvenido = new JLabel("BIENVENIDO");
+		bienvenido.setFont(new Font("", Font.BOLD, 50));
+		bienvenido.setForeground(Color.WHITE);
+
+		// IMAGEN MALDONADO (PANEL DERECHO)
+		ImageIcon imagenMaldonado = new ImageIcon("ImagenMALDONADOAZUL.png");
+		JLabel satelitalMaldonado = new JLabel(imagenMaldonado);
+
+		// OPCIONES (PANEL MEDIO IZQUIERDO)
+		JLabel elegirUsuario = new JLabel("Tipo de usuario");
+		elegirUsuario.setForeground(Color.WHITE);
+		elegirUsuario.setFont(new Font("", Font.BOLD, 16));
+		String[] ArregloUsuarios = { "Estudiante", "Admin" };
+		JComboBox TipoUsuario = new JComboBox(ArregloUsuarios);
+
+		JLabel ciLabel = new JLabel("CI (Sin puntos ni guiones)");
+		ciLabel.setFont(new Font("", Font.BOLD, 16));
+		ciLabel.setForeground(Color.WHITE);
+
+		JLabel contraseniaLabel = new JLabel("Contraseña");
+		contraseniaLabel.setFont(new Font("", Font.BOLD, 16));
+		contraseniaLabel.setForeground(Color.WHITE);
+
+		JTextField ci = new JTextField(10);
+		JTextField contrasenia = new JTextField(10);
+
+		// INICIAR SESION (PANEL INFERIOR IZQUIERDO)
+		JButton iniciarSesion = new JButton("Iniciar Sesión");
+		iniciarSesion.setFont(new Font("", Font.BOLD, 16));
+		iniciarSesion.setForeground(Color.WHITE);
+		iniciarSesion.setBackground(new Color(56, 182, 255));
+		iniciarSesion.setPreferredSize(new Dimension(150, 40));
+
+		// PANEL DERECHO
+		this.add(panelDer);
+		panelDer.add(satelitalMaldonado);
+
+		// PANEL IZQUIERDO
+		this.add(panelIzq, BorderLayout.WEST);
+		panelIzq.setPreferredSize(new Dimension(390, 325));
+		panelIzq.setLayout(new FlowLayout());
+		panelIzq.setBackground(new Color(218, 205, 37));
+
+		// PANEL SUPERIOR IZQUIERDO
+		panelIzq.add(panelIzqAr);
+		panelIzqAr.setPreferredSize(new Dimension(315, 375));
+		panelIzqAr.add(logoUTU);
+		panelIzqAr.add(bienvenido);
+		panelIzqAr.setBackground(new Color(218, 205, 37));
+
+		// PANEL MEDIO IZQUIERDO
+		panelIzq.add(panelIzqMedio);
+		panelIzqMedio.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 20));
+		panelIzqMedio.setPreferredSize(new Dimension(325, 190));
+		panelIzqMedio.add(elegirUsuario);
+		panelIzqMedio.add(TipoUsuario);
+		panelIzqMedio.add(ciLabel);
+		panelIzqMedio.add(ci);
+		panelIzqMedio.add(contraseniaLabel);
+		panelIzqMedio.add(contrasenia);
+		panelIzqMedio.setBackground(new Color(218, 205, 37));
+
+		// PANEL INFERIOR IZQUIERDO
+		panelIzq.add(panelIzqAb);
+		panelIzqAb.setPreferredSize(new Dimension(300, 220));
+		panelIzqAb.add(iniciarSesion);
+		panelIzqAb.setBackground(new Color(218, 205, 37));
+
+		panelIzq.add(AnepUTU);
+	}
+
+}
