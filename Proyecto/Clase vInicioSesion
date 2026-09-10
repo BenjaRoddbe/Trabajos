@@ -21,6 +21,7 @@ public class vInicioSesion extends JFrame {
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(null);
 		JPanel panel3 = new JPanel();
+		panel3.setLayout(null);
 
 		JButton bt1 = new JButton("ORIENTACIONES");
 		JButton bt2 = new JButton("AUDIOVISUAL");
@@ -33,11 +34,12 @@ public class vInicioSesion extends JFrame {
 		JLabel lbl8 = new JLabel("Proyectos recientes ");
 		JLabel lbl9 = new JLabel("____________________");
 		JLabel lbl10 = new JLabel("Aún no hay Proyectos...");
-		JLabel lbl11= new JLabel("Buscar un proyecto");
+		JTextField txt1= new JTextField("Buscar un proyecto");
 		
 		lbl8.setBounds(410,10,800,500);
 		lbl9.setBounds(400,20,800,500);
 		lbl10.setBounds(400,40,800,500);
+		txt1.setBounds(500,4,150,45);
 
 		bt1.setBackground(Color.decode("#D1D108"));
 		bt2.setBackground(Color.decode("#D1D108"));
@@ -59,8 +61,9 @@ public class vInicioSesion extends JFrame {
 		panel2.add(lbl8);
 		panel2.add(lbl9);
 		panel2.add(lbl10);
-		panel3.add(lbl11);
+		panel3.add(txt1);
 		panel3.setBackground(Color.decode("#D1D108"));
+		panel3.setPreferredSize(new Dimension(this.getWidth(),50));
 
 		this.add(panel1, BorderLayout.WEST);
 		this.add(panel2);
