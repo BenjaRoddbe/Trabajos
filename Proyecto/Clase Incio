@@ -105,6 +105,33 @@ public class Inicio extends JFrame {
 		panelIzqAb.setBackground(new Color(218, 205, 37));
 
 		panelIzq.add(AnepUTU);
+
+		iniciarSesion.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String contenidoCi = ci.getText();
+				int contenidoCi2 = Integer.parseInt(contenidoCi);
+				String contenidoContrasenia = contrasenia.getText();
+				String tipoUsuarioElegido = (String) TipoUsuario.getSelectedItem();
+
+				if (tipoUsuarioElegido == "Estudiante" && contenidoCi2==00000000 && contenidoContrasenia.equals("HOLA")) {
+					vInicioSesion inicio = new vInicioSesion();
+					setVisible(false);
+					inicio.setVisible(true);
+				}
+				else if (tipoUsuarioElegido == "Admin" && contenidoCi2==00000000 && contenidoContrasenia.equals("CHAU")) {
+					VentanaAdmin inicioAdmin = new VentanaAdmin();
+					setVisible(false);
+					inicioAdmin.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "La CI o contraseña son incorrectas, vuelva a intentarlo...");
+				}
+				
+			}
+		});
+
 	}
 
 }
