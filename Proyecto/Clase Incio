@@ -1,11 +1,13 @@
-package PrimeraGUI;
+package proyect;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Inicio extends JFrame {
+public class Inicio extends JFrame{
+	
 	public Inicio() {
 		this.setTitle("Inicio Sesión - Proyecto Final");
 		this.setSize(1440, 720);
@@ -47,11 +49,11 @@ public class Inicio extends JFrame {
 		JLabel satelitalMaldonado = new JLabel(imagenMaldonado);
 
 		// OPCIONES (PANEL MEDIO IZQUIERDO)
-		JLabel elegirUsuario = new JLabel("Tipo de usuario");
-		elegirUsuario.setForeground(Color.WHITE);
-		elegirUsuario.setFont(new Font("", Font.BOLD, 16));
-		String[] ArregloUsuarios = { "Estudiante", "Admin" };
-		JComboBox TipoUsuario = new JComboBox(ArregloUsuarios);
+		JLabel soloAdmin = new JLabel("Completar solo como Admin");
+		soloAdmin.setForeground(Color.WHITE);
+		soloAdmin.setFont(new Font("", Font.BOLD, 16));
+		
+		
 
 		JLabel ciLabel = new JLabel("CI (Sin puntos ni guiones)");
 		ciLabel.setFont(new Font("", Font.BOLD, 16));
@@ -70,6 +72,10 @@ public class Inicio extends JFrame {
 		iniciarSesion.setForeground(Color.WHITE);
 		iniciarSesion.setBackground(new Color(56, 182, 255));
 		iniciarSesion.setPreferredSize(new Dimension(150, 40));
+		JButton ingresarUsuario = new JButton("Ingresar como Usuario");
+		ingresarUsuario.setForeground(Color.WHITE);
+		ingresarUsuario.setBackground(new Color(56, 182, 255));
+		ingresarUsuario.setPreferredSize(new Dimension(200, 40));
 
 		// PANEL DERECHO
 		this.add(panelDer);
@@ -90,10 +96,9 @@ public class Inicio extends JFrame {
 
 		// PANEL MEDIO IZQUIERDO
 		panelIzq.add(panelIzqMedio);
+		panelIzqMedio.add(soloAdmin);
 		panelIzqMedio.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 20));
 		panelIzqMedio.setPreferredSize(new Dimension(325, 190));
-		panelIzqMedio.add(elegirUsuario);
-		panelIzqMedio.add(TipoUsuario);
 		panelIzqMedio.add(ciLabel);
 		panelIzqMedio.add(ci);
 		panelIzqMedio.add(contraseniaLabel);
@@ -105,34 +110,41 @@ public class Inicio extends JFrame {
 		panelIzqAb.setPreferredSize(new Dimension(300, 220));
 		panelIzqAb.add(iniciarSesion);
 		panelIzqAb.setBackground(new Color(218, 205, 37));
-
+		panelIzqAb.add(ingresarUsuario);
 		panelIzq.add(AnepUTU);
-
+		
 		iniciarSesion.addActionListener(new ActionListener() {
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				String contenidoCi = ci.getText();
 				int contenidoCi2 = Integer.parseInt(contenidoCi);
 				String contenidoContrasenia = contrasenia.getText();
-				String tipoUsuarioElegido = (String) TipoUsuario.getSelectedItem();
+				
+				
 
-				if (tipoUsuarioElegido == "Estudiante" && contenidoCi2==00000000 && contenidoContrasenia.equals("HOLA")) {
-					vInicioSesion inicio = new vInicioSesion();
+				if ( contenidoCi2==00000000 && contenidoContrasenia.equals("HOLA")) {
+					VentanaAdmin admin = new VentanaAdmin();
 					setVisible(false);
-					inicio.setVisible(true);
+					admin.setVisible(true);
 				}
-				else if (tipoUsuarioElegido == "Admin" && contenidoCi2==00000000 && contenidoContrasenia.equals("CHAU")) {
-					VentanaAdmin inicioAdmin = new VentanaAdmin();
-					setVisible(false);
-					inicioAdmin.setVisible(true);
-				} else {
-					JOptionPane.showMessageDialog(null, "La CI o contraseña son incorrectas, vuelva a intentarlo...");
-				}
+				
+				
+			}
+			
+		});
+		
+		ingresarUsuario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vInicioSesion inicioSesion = new vInicioSesion();
+				setVisible(false);
+				inicioSesion.setVisible(true);
 				
 			}
 		});
+		
 
 	}
 
