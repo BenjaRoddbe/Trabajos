@@ -10,10 +10,10 @@ public class vInicioSesion extends JFrame {
 	public vInicioSesion() {
 
 		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
-		this.setSize(1366, 768); // tamaño en PX. primero ancho luego largo
+		this.setSize(1920, 1080); // tamaño en PX. primero ancho luego largo
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
 		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setLayout(new BorderLayout());
 
 		JPanel panel1 = new JPanel();
@@ -21,9 +21,10 @@ public class vInicioSesion extends JFrame {
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(null);
 		JPanel panel3 = new JPanel();
-		panel3.setLayout(null);
 
-		JButton bt1 = new JButton("ORIENTACIONES");
+		JLabel lbl1 = new JLabel("ORIENTACIONES");
+		lbl1.setFont(new Font("", Font.BOLD, 20));
+		
 		JButton bt2 = new JButton("AUDIOVISUAL");
 		JButton bt3 = new JButton("INFORMATICA");
 		JButton bt4 = new JButton("AGRARIO");
@@ -34,36 +35,52 @@ public class vInicioSesion extends JFrame {
 		JLabel lbl8 = new JLabel("Proyectos recientes ");
 		JLabel lbl9 = new JLabel("____________________");
 		JLabel lbl10 = new JLabel("Aún no hay Proyectos...");
-		JTextField txt1= new JTextField("Buscar un proyecto");
+		JLabel lbl11 = new JLabel("Buscar un proyecto");
+
+		lbl8.setBounds(410, 10, 800, 500);
+		lbl9.setBounds(400, 20, 800, 500);
+		lbl10.setBounds(400, 40, 800, 500);
+
+		lbl1.setBackground(new Color(218, 205, 37));
+		bt2.setBackground(new Color(56, 182, 255));
+		bt2.setPreferredSize(new Dimension(150, 60));
+		bt2.setForeground(Color.WHITE); //Cambia color del texto del botón
 		
-		lbl8.setBounds(410,10,800,500);
-		lbl9.setBounds(400,20,800,500);
-		lbl10.setBounds(400,40,800,500);
-		txt1.setBounds(500,4,150,45);
+		bt3.setBackground(new Color(56, 182, 255));
+		bt3.setPreferredSize(new Dimension(150, 60));
+		bt3.setForeground(Color.WHITE);
+		
+		bt4.setBackground(new Color(56, 182, 255));
+		bt4.setPreferredSize(new Dimension(150, 60));
+		bt4.setForeground(Color.WHITE);
+		
+		bt5.setBackground(new Color(56, 182, 255));
+		bt5.setPreferredSize(new Dimension(150, 60));
+		bt5.setForeground(Color.WHITE);
+		
+		bt6.setBackground(new Color(56, 182, 255));
+		bt6.setPreferredSize(new Dimension(150, 60));
+		bt6.setForeground(Color.WHITE);
+		
+		bt7.setBackground(new Color(56, 182, 255));
+		bt7.setForeground(Color.WHITE);
 
-		bt1.setBackground(Color.decode("#D1D108"));
-		bt2.setBackground(Color.decode("#D1D108"));
-		bt3.setBackground(Color.decode("#D1D108"));
-		bt4.setBackground(Color.decode("#D1D108"));
-		bt5.setBackground(Color.decode("#D1D108"));
-		bt6.setBackground(Color.decode("#D1D108"));
-		bt7.setBackground(Color.decode("#D1D108"));
-
-		panel1.add(bt1);
+		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 45)); 
+		panel1.setPreferredSize(new Dimension(200, 300));
+		panel1.add(lbl1);
 		panel1.add(bt2);
 		panel1.add(bt3);
 		panel1.add(bt4);
 		panel1.add(bt5);
 		panel1.add(bt6);
 		panel1.add(bt7);
-		panel1.setBackground(Color.decode("#D1D108"));
+		panel1.setBackground(new Color(218, 205, 37));
 
 		panel2.add(lbl8);
 		panel2.add(lbl9);
 		panel2.add(lbl10);
-		panel3.add(txt1);
-		panel3.setBackground(Color.decode("#D1D108"));
-		panel3.setPreferredSize(new Dimension(this.getWidth(),50));
+		panel3.add(lbl11);
+		panel3.setBackground(new Color(218, 205, 37));
 
 		this.add(panel1, BorderLayout.WEST);
 		this.add(panel2);
