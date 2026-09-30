@@ -2,37 +2,63 @@ package proyect;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class VentanaAdmin extends JFrame {
 	private static final String Arial = null;
+
+	ArrayList<Proyecto> listaProyectos = new ArrayList<>();
+	ArrayList<Autor> listaAutores = new ArrayList<>();
+	ArrayList<Admin> listaAdmins = new ArrayList<>();
 
 	public VentanaAdmin() {
 
 		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
 		this.setSize(1920, 1080); // tamaño en PX. primero ancho luego largo
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
-		this.setLocationRelativeTo(null); // Posicion en la q incia la ventana
+		this.setLocationRelativeTo(null); // Posicion en la que inicia la ventana
 		this.setResizable(false);
 		this.setLayout(new BorderLayout());
 
+		// PANEL IZQUIERDO
 		JPanel panel1 = new JPanel();
-		
+
+		// PANEL CENTRAL
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(null);
+
+		// PANEL SUPERIOR
 		JPanel panel3 = new JPanel();
-		
+
+		// PANEL AÑADIR ADMIN
 		JPanel panel4 = new JPanel();
 		panel4.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
 		panel4.setPreferredSize(new Dimension(300, 700));
 		panel4.setBackground(new Color(218, 205, 37));
-		
+
+		// PANEL AÑADIR PROYECTO
 		JPanel panel5 = new JPanel();
-		panel5.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 45));
+		panel5.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
 		panel5.setPreferredSize(new Dimension(300, 700));
 		panel5.setBackground(new Color(218, 205, 37));
+
+		// PANEL AÑADIR AUTOR
+		JPanel panel6 = new JPanel();
+		panel6.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panel6.setPreferredSize(new Dimension(300, 700));
+		panel6.setBackground(new Color(218, 205, 37));
+
+		// PANEL DERECHO - Este almacena el panel 4, 5 y 6
+		CardLayout cardLayout = new CardLayout();
+		/*
+		 * CardLayout organiza múltiples componentes o paneles como si fueran una baraja
+		 * de cartas, mostrando solo uno a la vez en el mismo espacio
+		 */
+		JPanel panel7 = new JPanel(cardLayout);
 
 		JLabel lbl1 = new JLabel("ORIENTACIONES");
 		lbl1.setFont(new Font("", Font.BOLD, 20));
@@ -43,16 +69,33 @@ public class VentanaAdmin extends JFrame {
 		JButton bt5 = new JButton("CARPINTERIA");
 		JButton bt6 = new JButton("RECURSOS N.");
 		JButton bt7 = new JButton("Proyectos Destacados");
+
 		JButton bt8 = new JButton("Añadir Admin");
 		JButton bt9 = new JButton("Añadir Proyecto");
+		JButton bt15 = new JButton("Añadir Autor");
 
 		JButton bt10 = new JButton("Cerrar Sesión");
 
 		JLabel lbl8 = new JLabel("Proyectos recientes ");
-		JLabel lbl9 = new JLabel("____________________");
+		JLabel lbl9 = new JLabel("________");
 		JLabel lbl10 = new JLabel("Aún no hay Proyectos...");
-		JLabel lbl11 = new JLabel("ADMIN");
 
+		JLabel lbl11 = new JLabel("ADMIN");
+		lbl11.setFont(new Font(Arial, Font.BOLD, 18));
+
+		// TABLA
+		JLabel etiqueta0 = new JLabel("ID");
+		JLabel etiqueta1 = new JLabel("ORIENTACIÓN");
+		JLabel etiqueta2 = new JLabel("NOMBRE");
+		JLabel etiqueta3 = new JLabel("TEMA");
+		JLabel etiqueta4 = new JLabel("AÑO");
+		JLabel etiqueta5 = new JLabel("AUTORES");
+		JLabel etiqueta6 = new JLabel("CI DE UN AUTOR");
+		JLabel etiqueta7 = new JLabel("ENLACE");
+		String[] columnas = { "ID", "ORIENTACIÓN", "NOMBRE", "TEMA", "AÑO", "AUTORES", "CI DE UN AUTOR", "ENLACE" };
+		DefaultTableModel modeloProyecto = new DefaultTableModel(columnas, 0);
+		JTable tablaProyecto = new JTable(modeloProyecto);
+		JScrollPane scrollTabla = new JScrollPane(tablaProyecto);
 //		JTextField txt1 = new JTextField("Buscar un proyecto");
 
 		lbl1.setBackground(new Color(218, 205, 37));
@@ -61,6 +104,7 @@ public class VentanaAdmin extends JFrame {
 		bt2.setForeground(Color.WHITE); // Cambia color del texto del botón
 
 		bt3.setBackground(new Color(56, 182, 255));
+
 		bt3.setPreferredSize(new Dimension(150, 80));
 		bt3.setForeground(Color.WHITE);
 
@@ -83,7 +127,8 @@ public class VentanaAdmin extends JFrame {
 		bt10.setPreferredSize(new Dimension(80, 40));
 		bt10.setForeground(Color.WHITE);
 
-		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 55)); // Alinea (.CENTER) e indica separacion entre componentes (12, 12)
+		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 55)); // Alinea (.CENTER) e indica separacion entre
+																		// componentes (12, 12)
 		panel1.setPreferredSize(new Dimension(200, 300));
 		panel1.add(lbl1);
 		panel1.add(bt2);
@@ -94,70 +139,52 @@ public class VentanaAdmin extends JFrame {
 		panel1.add(bt7);
 		panel1.setBackground(new Color(218, 205, 37));
 
-		panel2.add(lbl8);
-		panel2.add(lbl9);
-		panel2.add(lbl10);
-		lbl8.setBounds(410, 10, 800, 500);
-		lbl9.setBounds(400, 20, 800, 500);
-		lbl10.setBounds(400, 40, 800, 500);
-		lbl11.setForeground(Color.white);
-		lbl11.setFont(new Font(Arial, Font.BOLD, 17));
+		panel2.add(scrollTabla);
+		scrollTabla.setBounds(50, 50, 1200, 1000);
+//		panel2.add(lbl8);
+//		panel2.add(lbl9);
+//		panel2.add(lbl10);
+//		lbl8.setBounds(410, 10, 800, 500);
+//		lbl9.setBounds(400, 20, 800, 500);
+//		lbl10.setBounds(400, 40, 800, 500);
+//		lbl11.setForeground(Color.white);
+//		lbl11.setFont(new Font(Arial, Font.BOLD, 17));
 
 		panel3.setLayout(null);
 		panel3.add(bt8);
 		panel3.add(bt9);
+		panel3.add(bt15);
 		panel3.add(bt10);
 		panel3.add(lbl11);
+		panel3.setBackground(new Color(218, 205, 37));
+		panel3.setPreferredSize(new Dimension(this.getWidth(), 50));
 //		panel3.add(txt1);
 
-		bt8.setBounds(1300, 4, 150, 45);
-		bt9.setBounds(1140, 4, 150, 45);
-//		txt1.setBounds(860, 4, 150, 45);
+		bt8.setBounds(1100, 4, 150, 45);
+		bt9.setBounds(940, 4, 150, 45);
+		bt15.setBounds(1260, 4, 150, 45);
 		bt10.setBounds(1460, 8, 150, 35);
 		lbl11.setBounds(1625, 4, 150, 45);
 
-		panel3.setBackground(new Color(218, 205, 37));
-		panel3.setPreferredSize(new Dimension(this.getWidth(), 50));
-
-		bt8.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				VentanaAdmin Vtn = new VentanaAdmin();
-//				Vtn.add(panel4);
-				panel4.setVisible(true);
-
-			}
-		});
-		
-		bt9.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				panel5.setVisible(true);
-
-			}
-		});
-
+		// AÑADIR AL JFRAME
 		this.add(panel1, BorderLayout.WEST);
 		this.add(panel2);
 		this.add(panel3, BorderLayout.NORTH);
-		this.add(panel4, BorderLayout.EAST);
-		panel4.setVisible(false);
-		this.add(panel5, BorderLayout.CENTER);
-		panel5.setVisible(false);
-		
+		this.add(panel7, BorderLayout.EAST);
+		panel7.setVisible(false);
+		panel7.add(panel4, "ADMIN");
+		panel7.add(panel5, "PROYECTO");
+		panel7.add(panel6, "AUTOR");
 
 		// VENTANA AÑADIR ADMIN:
+		JLabel lbl12 = new JLabel("NUEVO ADMIN");
+		lbl12.setFont(new Font(Arial, Font.BOLD, 20));
 
-		JLabel lbl12 = new JLabel("INGRESE EL NUEVO ADMIN");
-		
-		JLabel lbl13 = new JLabel("CI/Sin puntos ni guiones:");
+		JLabel lbl13 = new JLabel("CI (Sin puntos ni guiones)");
 		lbl13.setFont(new Font(Arial, Font.BOLD, 18));
-		
-		JLabel lbl14 = new JLabel("Contraseña:");
+
+		JLabel lbl14 = new JLabel("Contraseña");
 		lbl14.setFont(new Font(Arial, Font.BOLD, 18));
-		
 
 		JTextField txt1 = new JTextField(20);
 		txt1.setPreferredSize(new Dimension(20, 50));
@@ -165,20 +192,70 @@ public class VentanaAdmin extends JFrame {
 		txt2.setPreferredSize(new Dimension(20, 50));
 
 		JButton bt11 = new JButton("GUARDAR");
-		bt11.setPreferredSize(new Dimension(180, 40));
+		bt11.setPreferredSize(new Dimension(120, 40));
 		bt11.setBackground(new Color(56, 182, 255));
 		bt11.setForeground(Color.white);
-		
-		bt11.addActionListener(new ActionListener() {
-			
+
+		JButton bt12 = new JButton("CERRAR");
+		bt12.setPreferredSize(new Dimension(120, 40));
+		bt12.setBackground(new Color(255, 0, 0));
+		bt12.setForeground(Color.white);
+
+		bt8.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panel4.setVisible(false);
-				
+				cardLayout.show(panel7, "ADMIN");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+
 			}
 		});
 
-		lbl12.setFont(new Font(Arial, Font.BOLD, 20));
+		bt10.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Inicio inicioo = new Inicio();
+				inicioo.setVisible(true);
+			}
+		});
+
+		bt11.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String ciAdmin = txt1.getText();
+				String contrasenia = txt2.getText();
+
+				if (txt1.getText().isEmpty() | txt2.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Error, algún campo está vacio");
+				} else {
+
+					int ciA = Integer.parseInt(ciAdmin);
+					altaAdmin(ciA, contrasenia);
+					panel7.setVisible(false);
+					panel7.revalidate();
+					panel7.repaint();
+
+				}
+
+			}
+		});
+
+		bt12.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
 
 		panel4.add(lbl12);
 		panel4.add(lbl13);
@@ -186,51 +263,261 @@ public class VentanaAdmin extends JFrame {
 		panel4.add(lbl14);
 		panel4.add(txt2);
 		panel4.add(bt11);
+		panel4.add(bt12);
 
-		
+		// PANEL ALTA PROYECTO
+		JLabel lblNuevoProyecto = new JLabel("NUEVO PROYECTO");
+		lblNuevoProyecto.setFont(new Font(Arial, Font.BOLD, 20));
 
-		bt11.addActionListener(new ActionListener() {
+		JLabel lblIdProyecto = new JLabel("ID");
+		lblIdProyecto.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblNombreProyecto = new JLabel("Nombre del Proyecto");
+		lblNombreProyecto.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblTema = new JLabel("Tema del Proyecto");
+		lblTema.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblAnio = new JLabel("Año de realización");
+		lblAnio.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblAutores = new JLabel("Autores del Proyecto");
+		lblAutores.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblElegirOrientacion = new JLabel("Elija la orientación");
+		lblElegirOrientacion.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lblCedulaAutor = new JLabel("CI de uno de los autores");
+		lblCedulaAutor.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JTextField txtId = new JTextField(10);
+		txtId.setPreferredSize(new Dimension(20, 50));
+
+		JTextField txt3 = new JTextField(20);
+		txt3.setPreferredSize(new Dimension(20, 50));
+
+		JTextField txt4 = new JTextField(20);
+		txt4.setPreferredSize(new Dimension(20, 50));
+
+		JTextField txt5 = new JTextField(20);
+		txt5.setPreferredSize(new Dimension(20, 50));
+
+		JTextField txt6 = new JTextField(20);
+		txt6.setPreferredSize(new Dimension(20, 50));
+
+		JTextField txt7 = new JTextField(20);
+		txt7.setPreferredSize(new Dimension(20, 50));
+
+		String[] cursos = { "Audiovisual", "Informática", "Agrario", "Carpintería", "Recursos N." };
+		JComboBox cbx1 = new JComboBox(cursos);
+
+		JButton bt13 = new JButton("GUARDAR");
+		bt13.setPreferredSize(new Dimension(120, 40));
+		bt13.setBackground(new Color(56, 182, 255));
+		bt13.setForeground(Color.white);
+
+		JButton bt14 = new JButton("CERRAR");
+		bt14.setPreferredSize(new Dimension(120, 40));
+		bt14.setBackground(new Color(255, 0, 0));
+		bt14.setForeground(Color.white);
+
+		panel5.add(lblNuevoProyecto);
+
+		panel5.add(lblElegirOrientacion);
+		panel5.add(cbx1);
+
+		panel5.add(lblIdProyecto);
+		panel5.add(txtId);
+
+		panel5.add(lblNombreProyecto);
+		panel5.add(txt3);
+
+		panel5.add(lblTema);
+		panel5.add(txt4);
+
+		panel5.add(lblAnio);
+		panel5.add(txt5);
+
+		panel5.add(lblAutores);
+		panel5.add(txt6);
+
+		panel5.add(lblCedulaAutor);
+		panel5.add(txt7);
+
+		panel5.add(bt13);
+		panel5.add(bt14);
+
+		bt9.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
+				cardLayout.show(panel7, "PROYECTO");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
 
 			}
 		});
-	
-		// VENTANA AÑADIR PROYECTO
-				JLabel lbl15 = new JLabel("INGRESE EL NUEVO PROYECTO");
-				
-				JTextField txt3 = new JTextField("Nombre del Proyecto");
-				JTextField txt4 = new JTextField("Tema del Proyecto");
-				JTextField txt5 = new JTextField("Año de realización");
-				JTextField txt6 = new JTextField("Autores del Proyecto");
-				
-				
-				String[] cursos = {"Elija la orientación","Audiovisual", "Informática", "Agrario", "Carpintería", "Recursos N."};
-				JComboBox cbx1 = new JComboBox(cursos);
-				
-				JButton bt12 = new JButton("GUARDAR");
-				
-				lbl13.setFont(new Font(Arial, Font.PLAIN, 20));
-				
-				panel5.add(lbl15);
-				panel5.add(cbx1);
-				panel5.add(txt3);	
-				panel5.add(txt4);
-				panel5.add(txt5);
-				panel5.add(txt6);
-				panel5.add(bt12);
-				
-				bt12.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						panel5.setVisible(false);
-						
-					}
-				});
-		
+
+		bt13.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ide = txtId.getText();
+				String curso = (String) cbx1.getSelectedItem().toString();
+				String nom = txt3.getText();
+				String tema = txt4.getText();
+				String a = txt5.getText();
+				String autores = txt6.getText();
+				String ciAutores = txtId.getText();
+
+				if (cbx1.getSelectedItem().toString().isEmpty() || txtId.getText().isEmpty() || txt3.getText().isEmpty()
+						|| txt4.getText().isEmpty() || txt5.getText().isEmpty() || txt6.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Error, algún campo está vacio");
+				} else {
+
+					int id = Integer.parseInt(ide);
+					int anio = Integer.parseInt(a);
+					int ciAutor = Integer.parseInt(ciAutores);
+
+					altaProyecto(id, curso, nom, tema, anio, autores, ciAutor);
+					listarProyectos(modeloProyecto);
+					panel7.setVisible(false);
+					panel7.revalidate();
+					panel7.repaint();
+
+				}
+
+			}
+		});
+
+		bt14.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+
+		// PANEL ALTA AUTOR
+		bt15.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "AUTOR");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+			}
+		});
+		JLabel lbl21 = new JLabel("NUEVO AUTOR");
+		lbl21.setFont(new Font(Arial, Font.BOLD, 20));
+
+		JLabel lbl22 = new JLabel("CI (Sin puntos ni guiones)");
+		lbl22.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lbl23 = new JLabel("Primer Nombre");
+		lbl23.setFont(new Font(Arial, Font.BOLD, 18));
+
+		JLabel lbl24 = new JLabel("Primer Apellido");
+		lbl24.setFont(new Font(Arial, Font.BOLD, 18));
+
+		TextField txtAAA = new TextField(20);
+		txtAAA.setPreferredSize(new Dimension(20, 50));
+
+		TextField txtBBB = new TextField(20);
+		txtBBB.setPreferredSize(new Dimension(20, 50));
+
+		TextField txtCCC = new TextField(20);
+		txtCCC.setPreferredSize(new Dimension(20, 50));
+
+		JButton bt16 = new JButton("GUARDAR");
+		bt16.setPreferredSize(new Dimension(120, 40));
+		bt16.setBackground(new Color(56, 182, 255));
+		bt16.setForeground(Color.white);
+
+		bt16.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				String ced = txtAAA.getText();
+				String pN = txtBBB.getText();
+				String pA = txtCCC.getText();
+
+				if (txtAAA.getText().isEmpty() || txtBBB.getText().isEmpty() || txtCCC.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Error, algún campo está vacio");
+				} else {
+					/*
+					 * if(comprobarExistenciaAutor(listaAutores, ced) == true) {
+					 * JOptionPane.showMessageDialog(null, "Este autor ya existe"); }
+					 */
+					int ci = Integer.parseInt(ced);
+					altaAutor(ci, pN, pA);
+					listarProyectos(modeloProyecto);
+					panel7.setVisible(false);
+					panel7.revalidate();
+					panel7.repaint();
+				}
+			}
+
+		});
+
+		panel6.add(lbl21);
+		panel6.add(lbl22);
+		panel6.add(txtAAA);
+		panel6.add(lbl23);
+		panel6.add(txtBBB);
+		panel6.add(lbl24);
+		panel6.add(txtCCC);
+		panel6.add(bt16);
 	}
 
+	// FUNCIÓN DAR DE ALTA PROYECTO
+	public void altaProyecto(int id, String curso, String nom, String tema, int anio, String autores, int ciAutores) {
+
+		Proyecto p = new Proyecto(id, curso, nom, tema, anio, autores, ciAutores);
+		listaProyectos.add(p);
+	}
+
+	// FUNCIÓN DE LISTAR PROYECTOS
+	public void listarProyectos(DefaultTableModel modeloProyecto) {
+
+		modeloProyecto.setRowCount(0);
+		for (Proyecto p : listaProyectos) {
+
+			Object[] fila = { p.getId(), p.getCurso(), p.getNom(), p.getTema(), p.getAño(), p.getAutores(),
+					p.getCiAutores() };
+			modeloProyecto.addRow(fila);
+		}
+
+	}
+
+	// FUNCIÓN DAR DE ALTA AUTOR
+	public void altaAutor(int ci, String primerNom, String primerApp) {
+
+		Autor a = new Autor(ci, primerNom, primerApp);
+		listaAutores.add(a);
+
+	}
+
+	// FUNCIÓN ALTA ADMIN
+	public void altaAdmin(int ciAdmin, String contrasenia) {
+
+		Admin ad = new Admin(ciAdmin, contrasenia);
+		listaAdmins.add(ad);
+	}
+
+	// FUNCIÓN COMPROBAR EXITSENCIA DE UN AUTOR
+	/*
+	 * public static boolean comprobarExistenciaAutor (ArrayList<Autor>
+	 * listaAutores, String ced) {
+	 * 
+	 * boolean existe = false;
+	 * 
+	 * for (Autor ciAutor : listaAutores) { if () { return true; } } return false;
+	 * 
+	 * }
+	 */
 }
