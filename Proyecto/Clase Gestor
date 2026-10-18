@@ -1,21 +1,72 @@
-
 package proyect;
 
+import javax.swing.table.DefaultTableModel;
 
 public class Gestor {
 
-	
 	public static void main(String[] args) {
-		
+
+		Inicio ventana1 = new Inicio();
+		ventana1.setVisible(true);
+
 		VentanaAdmin vtnA = new VentanaAdmin();
-		vtnA.setVisible(true);
-		
+		vtnA.setVisible(false);
+
 		vInicioSesion vtn = new vInicioSesion();
 		vtn.setVisible(false);
-		
-		VentanaAñadirAdm vtnAA = new VentanaAñadirAdm();
-		vtnAA.setVisible(false);
-		
+
+		// mySQL_Proyecto BD = new mySQL_Proyecto();
+
+	}
+
+	// FUNCIÓN DAR DE ALTA PROYECTO
+	public void altaProyecto(String curso, String nom, String tema, int anio, String autores, int ciAutores) {
+
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.altaProyecto(curso, nom, tema, anio, autores, ciAutores);
+	}
+
+	// FUNCIÓN DE LISTAR PROYECTOS
+	public void listarProyectos(DefaultTableModel modeloProyecto, String orientacion) {
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.listarProyectos(modeloProyecto, orientacion);
+	}
+
+	// FUNCIÓN DAR DE BAJA PROYECTO
+	public void bajaProyecto(int id) {
+
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.bajaProyecto(id);
+	}
+
+	// FUNCIÓN DAR DE ALTA AUTOR
+	public void altaAutor(int ci, String primerNom, String primerApp) {
+
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.altaAutor(ci, primerNom, primerApp);
+
+	}
+
+	// FUNCIÓN DAR DE BAJA ADMIN
+	public void bajaAutor(int ci) {
+
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.bajaAutor(ci);
+	}
+
+	// FUNCIÓN DAR DE ALTA ADMIN
+	public void AltaAdmin(int ci, String contrasenia) {
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.altaAdmin(ci, contrasenia);
+
+	}
+
+	// FUNCIÓN DAR DE BAJA ADMIN
+	public void bajaAdmin(int ci) {
+
+		mySQL_Proyecto BD = new mySQL_Proyecto();
+		BD.bajaAdmin(ci);
 	}
 
 }
+
