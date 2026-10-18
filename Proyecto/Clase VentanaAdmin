@@ -11,12 +11,18 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaAdmin extends JFrame {
 	private static final String Arial = null;
 
-	ArrayList<Proyecto> listaProyectos = new ArrayList<>();
-	ArrayList<Autor> listaAutores = new ArrayList<>();
-	ArrayList<Admin> listaAdmins = new ArrayList<>();
+//	ArrayList<Proyecto> listaProyectos = new ArrayList<>();
+//	ArrayList<Autor> listaAutores = new ArrayList<>();
+//	ArrayList<Admin> listaAdmins = new ArrayList<>();
+
+	String orientacionSeleccionada = "";
 
 	public VentanaAdmin() {
 
+		// Se crea una instancia de la clase mySQL y Gestor para poder llamar las funciones de esas clase en esta
+		mySQL_Proyecto sqlBD = new mySQL_Proyecto();
+		Gestor Logica = new Gestor();
+		
 		this.setTitle("Proyectos Arrayanes"); // establece el titulo de la ventana
 		this.setSize(1920, 1080); // tamaño en PX. primero ancho luego largo
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // accion default al cerrar
@@ -33,25 +39,62 @@ public class VentanaAdmin extends JFrame {
 
 		// PANEL SUPERIOR
 		JPanel panel3 = new JPanel();
+		
+		// PANEL GESTIONAR ADMIN
+		JPanel panelGestionarAdmin = new JPanel();
+		panelGestionarAdmin.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 25));
+		panelGestionarAdmin.setPreferredSize(new Dimension(343, 700));
+		panelGestionarAdmin.setBackground(new Color(218, 205, 37));
+		
+		// PANEL ALTA ADMIN
+		JPanel panelAltaAdmin = new JPanel();
+		panelAltaAdmin.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelAltaAdmin.setPreferredSize(new Dimension(343, 700));
+		panelAltaAdmin.setBackground(new Color(218, 205, 37));
+		
+		// PANEL BAJA ADMIN
+		JPanel panelBajaAdmin = new JPanel();
+		panelBajaAdmin.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelBajaAdmin.setPreferredSize(new Dimension(343, 700));
+		panelBajaAdmin.setBackground(new Color(218, 205, 37));
 
-		// PANEL AÑADIR ADMIN
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
-		panel4.setPreferredSize(new Dimension(300, 700));
-		panel4.setBackground(new Color(218, 205, 37));
+		// PANEL GESTIONAR PROYECTO
+		JPanel panelGestionarProyectos = new JPanel();
+		panelGestionarProyectos.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 25));
+		panelGestionarProyectos.setPreferredSize(new Dimension(300, 700));
+		panelGestionarProyectos.setBackground(new Color(218, 205, 37));
+		
+		// PANEL ALTA PROYECTO
+		JPanel panelAltaProyecto = new JPanel();
+		panelAltaProyecto.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelAltaProyecto.setPreferredSize(new Dimension(343, 700));
+		panelAltaProyecto.setBackground(new Color(218, 205, 37));
 
-		// PANEL AÑADIR PROYECTO
-		JPanel panel5 = new JPanel();
-		panel5.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
-		panel5.setPreferredSize(new Dimension(300, 700));
-		panel5.setBackground(new Color(218, 205, 37));
-
-		// PANEL AÑADIR AUTOR
-		JPanel panel6 = new JPanel();
-		panel6.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
-		panel6.setPreferredSize(new Dimension(300, 700));
-		panel6.setBackground(new Color(218, 205, 37));
-
+		// PANEL BAJA PROYECTO
+		JPanel panelBajaProyecto = new JPanel();
+		panelBajaProyecto.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelBajaProyecto.setPreferredSize(new Dimension(343, 700));
+		panelBajaProyecto.setBackground(new Color(218, 205, 37));
+		
+		// PANEL GESTIONAR AUTOR
+		JPanel panelGestionarAutores = new JPanel();
+		panelGestionarAutores.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 25));
+		panelGestionarAutores.setPreferredSize(new Dimension(343, 700));
+		panelGestionarAutores.setBackground(new Color(218, 205, 37));
+		
+		// PANEL ALTA AUTOR
+		JPanel panelAltaAutor = new JPanel();
+		panelAltaAutor.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelAltaAutor.setPreferredSize(new Dimension(343, 700));
+		panelAltaAutor.setBackground(new Color(218, 205, 37));
+		
+		// PANEL BAJA AUTOR
+		JPanel panelBajaAutor = new JPanel();
+		panelBajaAutor.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 25));
+		panelBajaAutor.setPreferredSize(new Dimension(343, 700));
+		panelBajaAutor.setBackground(new Color(218, 205, 37));
+		
+		
 		// PANEL DERECHO - Este almacena el panel 4, 5 y 6
 		CardLayout cardLayout = new CardLayout();
 		/*
@@ -60,87 +103,177 @@ public class VentanaAdmin extends JFrame {
 		 */
 		JPanel panel7 = new JPanel(cardLayout);
 
-		JLabel lbl1 = new JLabel("ORIENTACIONES");
-		lbl1.setFont(new Font("", Font.BOLD, 20));
+		JLabel lblOrientacionesTitulo = new JLabel("ORIENTACIONES");
+		lblOrientacionesTitulo.setFont(new Font("", Font.BOLD, 20));
 
-		JButton bt2 = new JButton("AUDIOVISUAL");
-		JButton bt3 = new JButton("INFORMATICA");
-		JButton bt4 = new JButton("AGRARIO");
-		JButton bt5 = new JButton("CARPINTERIA");
-		JButton bt6 = new JButton("RECURSOS N.");
-		JButton bt7 = new JButton("Proyectos Destacados");
+		// Botones de las orientaciones
+		JButton btTodasOrientaciones = new JButton("TODAS");
+		JButton btAudiovisual = new JButton("AUDIOVISUAL");
+		JButton btInformatica = new JButton("INFORMATICA");
+		JButton btAgrario = new JButton("AGRARIO");
+		JButton btCarpinteria = new JButton("CARPINTERIA");
+		JButton btRecursosNaturales = new JButton("RECURSOS N.");
+		JButton btProyectosDestacados = new JButton("Proyectos Destacados");
 
-		JButton bt8 = new JButton("Añadir Admin");
-		JButton bt9 = new JButton("Añadir Proyecto");
-		JButton bt15 = new JButton("Añadir Autor");
+		JButton btGestionarAdmin = new JButton("Gestionar Admins");
+		JButton btAltaAdmin = new JButton("DAR ALTA");
+		JButton btBajaAdmin = new JButton("DAR BAJA");
+		btAltaAdmin.setPreferredSize(new Dimension(200, 100));
+		btBajaAdmin.setPreferredSize(new Dimension(200, 100));
+		btAltaAdmin.setBackground(new Color(140, 214, 196));
+		btBajaAdmin.setBackground(new Color(255, 0, 0));
+		btAltaAdmin.setForeground(Color.WHITE);
+		btBajaAdmin.setForeground(Color.WHITE);
+		
+		JButton btGestionarProyecto = new JButton("Gestionar Proyectos");
+		JButton btAltaProyecto = new JButton("DAR ALTA");
+		JButton btBajaProyecto = new JButton("DAR BAJA");
+		btAltaProyecto.setPreferredSize(new Dimension(200, 100));
+		btBajaProyecto.setPreferredSize(new Dimension(200, 100));
+		btAltaProyecto.setBackground(new Color(140, 214, 196));
+		btBajaProyecto.setBackground(new Color(255, 0, 0));
+		btAltaProyecto.setForeground(Color.WHITE);
+		btBajaProyecto.setForeground(Color.WHITE);
+		
+		JButton btGestionarAutor = new JButton("Gestionar Autores");
+		JButton btAltaAutor = new JButton("DAR ALTA");
+		JButton btBajaAutor = new JButton("DAR BAJA");
+		btAltaAutor.setPreferredSize(new Dimension(200, 100));
+		btBajaAutor.setPreferredSize(new Dimension(200, 100));
+		btAltaAutor.setBackground(new Color(140, 214, 196));
+		btBajaAutor.setBackground(new Color(255, 0, 0));
+		btAltaAutor.setForeground(Color.WHITE);
+		btBajaAutor.setForeground(Color.WHITE);
 
-		JButton bt10 = new JButton("Cerrar Sesión");
-
-		JLabel lbl8 = new JLabel("Proyectos recientes ");
-		JLabel lbl9 = new JLabel("________");
-		JLabel lbl10 = new JLabel("Aún no hay Proyectos...");
+		JButton btCerrarSesion = new JButton("Cerrar Sesión");
 
 		JLabel lbl11 = new JLabel("ADMIN");
 		lbl11.setFont(new Font(Arial, Font.BOLD, 18));
 
 		// TABLA
-		JLabel etiqueta0 = new JLabel("ID");
-		JLabel etiqueta1 = new JLabel("ORIENTACIÓN");
-		JLabel etiqueta2 = new JLabel("NOMBRE");
-		JLabel etiqueta3 = new JLabel("TEMA");
-		JLabel etiqueta4 = new JLabel("AÑO");
-		JLabel etiqueta5 = new JLabel("AUTORES");
-		JLabel etiqueta6 = new JLabel("CI DE UN AUTOR");
-		JLabel etiqueta7 = new JLabel("ENLACE");
+		JLabel lblID = new JLabel("ID");
+		JLabel lblOrientacionP = new JLabel("ORIENTACIÓN");
+		JLabel lblNombreP = new JLabel("NOMBRE");
+		JLabel lblTemaP = new JLabel("TEMA");
+		JLabel lblAnioP = new JLabel("AÑO");
+		JLabel lblAutoresP = new JLabel("AUTORES");
+		JLabel lblCiAutorP = new JLabel("CI DE UN AUTOR");
+		JLabel lblEnlaceP = new JLabel("ENLACE");
 		String[] columnas = { "ID", "ORIENTACIÓN", "NOMBRE", "TEMA", "AÑO", "AUTORES", "CI DE UN AUTOR", "ENLACE" };
 		DefaultTableModel modeloProyecto = new DefaultTableModel(columnas, 0);
 		JTable tablaProyecto = new JTable(modeloProyecto);
 		JScrollPane scrollTabla = new JScrollPane(tablaProyecto);
+		Logica.listarProyectos(modeloProyecto, orientacionSeleccionada);
 //		JTextField txt1 = new JTextField("Buscar un proyecto");
 
-		lbl1.setBackground(new Color(218, 205, 37));
-		bt2.setBackground(new Color(56, 182, 255));
-		bt2.setPreferredSize(new Dimension(150, 80));
-		bt2.setForeground(Color.WHITE); // Cambia color del texto del botón
+		btTodasOrientaciones.addActionListener(new ActionListener() {
 
-		bt3.setBackground(new Color(56, 182, 255));
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
 
-		bt3.setPreferredSize(new Dimension(150, 80));
-		bt3.setForeground(Color.WHITE);
+			}
+		});
+		
+		btAudiovisual.addActionListener(new ActionListener() {
 
-		bt4.setBackground(new Color(56, 182, 255));
-		bt4.setPreferredSize(new Dimension(150, 80));
-		bt4.setForeground(Color.WHITE);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "Audiovisual";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
 
-		bt5.setBackground(new Color(56, 182, 255));
-		bt5.setPreferredSize(new Dimension(150, 80));
-		bt5.setForeground(Color.WHITE);
+			}
+		});
 
-		bt6.setBackground(new Color(56, 182, 255));
-		bt6.setPreferredSize(new Dimension(150, 80));
-		bt6.setForeground(Color.WHITE);
+		btInformatica.addActionListener(new ActionListener() {
 
-		bt7.setBackground(new Color(56, 182, 255));
-		bt7.setForeground(Color.WHITE);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "Informática";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
 
-		bt10.setBackground(new Color(255, 0, 0));
-		bt10.setPreferredSize(new Dimension(80, 40));
-		bt10.setForeground(Color.WHITE);
+			}
+		});
 
-		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 55)); // Alinea (.CENTER) e indica separacion entre
+		btAgrario.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "Agrario";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
+
+			}
+		});
+
+		btCarpinteria.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "Carpintería";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
+
+			}
+		});
+
+		btRecursosNaturales.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				orientacionSeleccionada = "Recursos N.";
+				sqlBD.listarProyectos(modeloProyecto, orientacionSeleccionada);
+
+			}
+		});
+
+		lblOrientacionesTitulo.setBackground(new Color(218, 205, 37));
+
+		btTodasOrientaciones.setBackground(new Color(56, 182, 255));
+		btTodasOrientaciones.setPreferredSize(new Dimension(150, 80));
+		btTodasOrientaciones.setForeground(Color.WHITE);
+		
+		btAudiovisual.setBackground(new Color(56, 182, 255));
+		btAudiovisual.setPreferredSize(new Dimension(150, 80));
+		btAudiovisual.setForeground(Color.WHITE); // Cambia color del texto del botón
+
+		btInformatica.setBackground(new Color(56, 182, 255));
+		btInformatica.setPreferredSize(new Dimension(150, 80));
+		btInformatica.setForeground(Color.WHITE);
+
+		btAgrario.setBackground(new Color(56, 182, 255));
+		btAgrario.setPreferredSize(new Dimension(150, 80));
+		btAgrario.setForeground(Color.WHITE);
+
+		btCarpinteria.setBackground(new Color(56, 182, 255));
+		btCarpinteria.setPreferredSize(new Dimension(150, 80));
+		btCarpinteria.setForeground(Color.WHITE);
+
+		btRecursosNaturales.setBackground(new Color(56, 182, 255));
+		btRecursosNaturales.setPreferredSize(new Dimension(150, 80));
+		btRecursosNaturales.setForeground(Color.WHITE);
+
+		btProyectosDestacados.setBackground(new Color(56, 182, 255));
+		btProyectosDestacados.setForeground(Color.WHITE);
+
+		btCerrarSesion.setBackground(new Color(255, 0, 0));
+		btCerrarSesion.setPreferredSize(new Dimension(80, 40));
+		btCerrarSesion.setForeground(Color.WHITE);
+
+		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 40)); // Alinea (.CENTER) e indica separacion entre
 																		// componentes (12, 12)
 		panel1.setPreferredSize(new Dimension(200, 300));
-		panel1.add(lbl1);
-		panel1.add(bt2);
-		panel1.add(bt3);
-		panel1.add(bt4);
-		panel1.add(bt5);
-		panel1.add(bt6);
-		panel1.add(bt7);
+		panel1.add(lblOrientacionesTitulo);
+		panel1.add(btTodasOrientaciones);
+		panel1.add(btAudiovisual);
+		panel1.add(btInformatica);
+		panel1.add(btAgrario);
+		panel1.add(btCarpinteria);
+		panel1.add(btRecursosNaturales);
+		panel1.add(btProyectosDestacados);
 		panel1.setBackground(new Color(218, 205, 37));
 
 		panel2.add(scrollTabla);
-		scrollTabla.setBounds(50, 50, 1200, 1000);
+		scrollTabla.setBounds(2, 2, 1200, 1000);
 //		panel2.add(lbl8);
 //		panel2.add(lbl9);
 //		panel2.add(lbl10);
@@ -151,19 +284,19 @@ public class VentanaAdmin extends JFrame {
 //		lbl11.setFont(new Font(Arial, Font.BOLD, 17));
 
 		panel3.setLayout(null);
-		panel3.add(bt8);
-		panel3.add(bt9);
-		panel3.add(bt15);
-		panel3.add(bt10);
+		panel3.add(btGestionarAdmin);
+		panel3.add(btGestionarProyecto);
+		panel3.add(btGestionarAutor);
+		panel3.add(btCerrarSesion);
 		panel3.add(lbl11);
 		panel3.setBackground(new Color(218, 205, 37));
 		panel3.setPreferredSize(new Dimension(this.getWidth(), 50));
 //		panel3.add(txt1);
 
-		bt8.setBounds(1100, 4, 150, 45);
-		bt9.setBounds(940, 4, 150, 45);
-		bt15.setBounds(1260, 4, 150, 45);
-		bt10.setBounds(1460, 8, 150, 35);
+		btGestionarAdmin.setBounds(1100, 4, 150, 45);
+		btGestionarProyecto.setBounds(940, 4, 150, 45);
+		btGestionarAutor.setBounds(1260, 4, 150, 45);
+		btCerrarSesion.setBounds(1460, 8, 150, 35);
 		lbl11.setBounds(1625, 4, 150, 45);
 
 		// AÑADIR AL JFRAME
@@ -172,11 +305,50 @@ public class VentanaAdmin extends JFrame {
 		this.add(panel3, BorderLayout.NORTH);
 		this.add(panel7, BorderLayout.EAST);
 		panel7.setVisible(false);
-		panel7.add(panel4, "ADMIN");
-		panel7.add(panel5, "PROYECTO");
-		panel7.add(panel6, "AUTOR");
+		panel7.add(panelGestionarAdmin, "ADMIN");
+		panel7.add(panelAltaAdmin, "ALTA ADMIN");
+		panel7.add(panelBajaAdmin, "BAJA ADMIN");
+		panel7.add(panelGestionarProyectos, "PROYECTO");
+		panel7.add(panelAltaProyecto, "ALTA PROYECTO");
+		panel7.add(panelBajaProyecto, "BAJA PROYECTO");
+		panel7.add(panelGestionarAutores, "AUTOR");
+		panel7.add(panelAltaAutor, "ALTA AUTOR");
+		panel7.add(panelBajaAutor, "BAJA AUTOR");
+		panel7.add(panelGestionarProyectos, "PROYECTO");
+		panel7.add(panelAltaProyecto, "ALTA PROYECTO");
+		panel7.add(panelBajaProyecto, "BAJA PROYECTO");
 
-		// VENTANA AÑADIR ADMIN:
+		// PANEL GESTIONAR ADMINS:
+		
+		//alta admin
+		
+		panelGestionarAdmin.add(btAltaAdmin);
+		panelGestionarAdmin.add(btBajaAdmin);
+		
+		btAltaAdmin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "ALTA ADMIN");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
+		btBajaAdmin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "BAJA ADMIN");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
 		JLabel lbl12 = new JLabel("NUEVO ADMIN");
 		lbl12.setFont(new Font(Arial, Font.BOLD, 20));
 
@@ -191,17 +363,17 @@ public class VentanaAdmin extends JFrame {
 		JTextField txt2 = new JTextField(20);
 		txt2.setPreferredSize(new Dimension(20, 50));
 
-		JButton bt11 = new JButton("GUARDAR");
-		bt11.setPreferredSize(new Dimension(120, 40));
-		bt11.setBackground(new Color(56, 182, 255));
-		bt11.setForeground(Color.white);
+		JButton btGuardarAdmin = new JButton("GUARDAR");
+		btGuardarAdmin.setPreferredSize(new Dimension(120, 40));
+		btGuardarAdmin.setBackground(new Color(56, 182, 255));
+		btGuardarAdmin.setForeground(Color.white);
 
-		JButton bt12 = new JButton("CERRAR");
-		bt12.setPreferredSize(new Dimension(120, 40));
-		bt12.setBackground(new Color(255, 0, 0));
-		bt12.setForeground(Color.white);
+		JButton btCerrarAltaAdmin = new JButton("CERRAR");
+		btCerrarAltaAdmin.setPreferredSize(new Dimension(120, 40));
+		btCerrarAltaAdmin.setBackground(new Color(255, 0, 0));
+		btCerrarAltaAdmin.setForeground(Color.white);
 
-		bt8.addActionListener(new ActionListener() {
+		btGestionarAdmin.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +385,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 
-		bt10.addActionListener(new ActionListener() {
+		btCerrarSesion.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -223,7 +395,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 
-		bt11.addActionListener(new ActionListener() {
+		btGuardarAdmin.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -236,7 +408,7 @@ public class VentanaAdmin extends JFrame {
 				} else {
 
 					int ciA = Integer.parseInt(ciAdmin);
-					altaAdmin(ciA, contrasenia);
+					Logica.AltaAdmin(ciA, contrasenia);
 					panel7.setVisible(false);
 					panel7.revalidate();
 					panel7.repaint();
@@ -246,7 +418,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 
-		bt12.addActionListener(new ActionListener() {
+		btCerrarAltaAdmin.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -257,20 +429,76 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 
-		panel4.add(lbl12);
-		panel4.add(lbl13);
-		panel4.add(txt1);
-		panel4.add(lbl14);
-		panel4.add(txt2);
-		panel4.add(bt11);
-		panel4.add(bt12);
+		panelAltaAdmin.add(lbl12);
+		panelAltaAdmin.add(lbl13);
+		panelAltaAdmin.add(txt1);
+		panelAltaAdmin.add(lbl14);
+		panelAltaAdmin.add(txt2);
+		panelAltaAdmin.add(btGuardarAdmin);
+		panelAltaAdmin.add(btCerrarAltaAdmin);
+		
+		//baja admin
+		JLabel lblEliminarAdmin = new JLabel("ELIMINAR ADMIN");
+		lblEliminarAdmin.setFont(new Font(Arial, Font.BOLD, 20));
 
-		// PANEL ALTA PROYECTO
+		JLabel lblCiBajaAdmin = new JLabel("CI (Sin puntos ni guiones)");
+		lblCiBajaAdmin.setFont(new Font(Arial, Font.BOLD, 18));
+		
+		JTextField txfCiBaja = new JTextField(20);
+		txfCiBaja.setPreferredSize(new Dimension(20, 50));
+		
+		JButton btEliminarAdmin = new JButton("ELIMINAR");
+		btEliminarAdmin.setPreferredSize(new Dimension(120, 40));
+		btEliminarAdmin.setBackground(new Color(255, 0, 0));
+		btEliminarAdmin.setForeground(Color.white);
+		
+		JButton btCerrarBajaAdmin = new JButton("CERRAR");
+		btCerrarBajaAdmin.setPreferredSize(new Dimension(120, 40));
+		btCerrarBajaAdmin.setBackground(new Color(255, 0, 0));
+		btCerrarBajaAdmin.setForeground(Color.white);
+		
+		btEliminarAdmin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String ci = txfCiBaja.getText();
+				if (txfCiBaja.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor, ingrese una CI");
+				} else {
+				
+				int ci2 = Integer.parseInt(ci);
+				Logica.bajaAdmin(ci2);
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+				JOptionPane.showMessageDialog(null, "Admin eliminado correctamente");
+				}
+			}
+		});
+		
+		btCerrarBajaAdmin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
+		panelBajaAdmin.add(lblEliminarAdmin);
+		panelBajaAdmin.add(lblCiBajaAdmin);
+		panelBajaAdmin.add(txfCiBaja);
+		panelBajaAdmin.add(btEliminarAdmin);
+		panelBajaAdmin.add(btCerrarBajaAdmin);
+
+		// PANEL GESTIONAR PROYECTOS
+		
+		//alta proyectos
 		JLabel lblNuevoProyecto = new JLabel("NUEVO PROYECTO");
 		lblNuevoProyecto.setFont(new Font(Arial, Font.BOLD, 20));
-
-		JLabel lblIdProyecto = new JLabel("ID");
-		lblIdProyecto.setFont(new Font(Arial, Font.BOLD, 18));
 
 		JLabel lblNombreProyecto = new JLabel("Nombre del Proyecto");
 		lblNombreProyecto.setFont(new Font(Arial, Font.BOLD, 18));
@@ -290,9 +518,6 @@ public class VentanaAdmin extends JFrame {
 		JLabel lblCedulaAutor = new JLabel("CI de uno de los autores");
 		lblCedulaAutor.setFont(new Font(Arial, Font.BOLD, 18));
 
-		JTextField txtId = new JTextField(10);
-		txtId.setPreferredSize(new Dimension(20, 50));
-
 		JTextField txt3 = new JTextField(20);
 		txt3.setPreferredSize(new Dimension(20, 50));
 
@@ -311,43 +536,62 @@ public class VentanaAdmin extends JFrame {
 		String[] cursos = { "Audiovisual", "Informática", "Agrario", "Carpintería", "Recursos N." };
 		JComboBox cbx1 = new JComboBox(cursos);
 
-		JButton bt13 = new JButton("GUARDAR");
-		bt13.setPreferredSize(new Dimension(120, 40));
-		bt13.setBackground(new Color(56, 182, 255));
-		bt13.setForeground(Color.white);
+		JButton btGuardarProyecto = new JButton("GUARDAR");
+		btGuardarProyecto.setPreferredSize(new Dimension(120, 40));
+		btGuardarProyecto.setBackground(new Color(56, 182, 255));
+		btGuardarProyecto.setForeground(Color.white);
+		
+		JButton btCerrarAltaProyecto = new JButton("CERRAR");
+		btCerrarAltaProyecto.setPreferredSize(new Dimension(120, 40));
+		btCerrarAltaProyecto.setBackground(new Color(255, 0, 0));
+		btCerrarAltaProyecto.setForeground(Color.white);
 
-		JButton bt14 = new JButton("CERRAR");
-		bt14.setPreferredSize(new Dimension(120, 40));
-		bt14.setBackground(new Color(255, 0, 0));
-		bt14.setForeground(Color.white);
+		//baja proyectos
+		JLabel lblEliminarProyecto = new JLabel("ELIMINAR PROYECTO");
+		lblEliminarProyecto.setFont(new Font(Arial, Font.BOLD, 20));
 
-		panel5.add(lblNuevoProyecto);
+		JLabel lblIdProyecto = new JLabel("ID del Proyecto");
+		lblIdProyecto.setFont(new Font(Arial, Font.BOLD, 18));
+		
+		JTextField txfID = new JTextField(20);
+		txfID.setPreferredSize(new Dimension(20, 50));
+		
+		JButton btEliminarProyecto = new JButton("ELIMINAR");
+		btEliminarProyecto.setPreferredSize(new Dimension(120, 40));
+		btEliminarProyecto.setBackground(new Color(255, 0, 0));
+		btEliminarProyecto.setForeground(Color.white);
+		
+		JButton btCerrarBajaProyecto = new JButton("CERRAR");
+		btCerrarBajaProyecto.setPreferredSize(new Dimension(120, 40));
+		btCerrarBajaProyecto.setBackground(new Color(255, 0, 0));
+		btCerrarBajaProyecto.setForeground(Color.white);
+		
+		panelGestionarProyectos.add(btAltaProyecto);
+		panelGestionarProyectos.add(btBajaProyecto);
+		
+		panelAltaProyecto.add(lblNuevoProyecto);
+		panelAltaProyecto.add(lblElegirOrientacion);
+		panelAltaProyecto.add(cbx1);
+		panelAltaProyecto.add(lblNombreProyecto);
+		panelAltaProyecto.add(txt3);
+		panelAltaProyecto.add(lblTema);
+		panelAltaProyecto.add(txt4);
+		panelAltaProyecto.add(lblAnio);
+		panelAltaProyecto.add(txt5);
+		panelAltaProyecto.add(lblAutores);
+		panelAltaProyecto.add(txt6);
+		panelAltaProyecto.add(lblCedulaAutor);
+		panelAltaProyecto.add(txt7);
+		panelAltaProyecto.add(btGuardarProyecto);
+		panelAltaProyecto.add(btCerrarAltaProyecto);
+		
+		panelBajaProyecto.add(lblEliminarProyecto);
+		panelBajaProyecto.add(lblIdProyecto);
+		panelBajaProyecto.add(txfID);
+		panelBajaProyecto.add(btEliminarProyecto);
+		panelBajaProyecto.add(btCerrarBajaProyecto);
 
-		panel5.add(lblElegirOrientacion);
-		panel5.add(cbx1);
-
-		panel5.add(lblIdProyecto);
-		panel5.add(txtId);
-
-		panel5.add(lblNombreProyecto);
-		panel5.add(txt3);
-
-		panel5.add(lblTema);
-		panel5.add(txt4);
-
-		panel5.add(lblAnio);
-		panel5.add(txt5);
-
-		panel5.add(lblAutores);
-		panel5.add(txt6);
-
-		panel5.add(lblCedulaAutor);
-		panel5.add(txt7);
-
-		panel5.add(bt13);
-		panel5.add(bt14);
-
-		bt9.addActionListener(new ActionListener() {
+		btGestionarProyecto.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -358,30 +602,52 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
-		bt13.addActionListener(new ActionListener() {
+		
+		btAltaProyecto.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String ide = txtId.getText();
+				cardLayout.show(panel7, "ALTA PROYECTO");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
+		btBajaProyecto.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "BAJA PROYECTO");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+
+		btGuardarProyecto.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				String curso = (String) cbx1.getSelectedItem().toString();
 				String nom = txt3.getText();
 				String tema = txt4.getText();
 				String a = txt5.getText();
 				String autores = txt6.getText();
-				String ciAutores = txtId.getText();
+				String ciAutores = txt7.getText();
 
-				if (cbx1.getSelectedItem().toString().isEmpty() || txtId.getText().isEmpty() || txt3.getText().isEmpty()
-						|| txt4.getText().isEmpty() || txt5.getText().isEmpty() || txt6.getText().isEmpty()) {
+				if (cbx1.getSelectedItem().toString().isEmpty() || txt3.getText().isEmpty() || txt4.getText().isEmpty()
+						|| txt5.getText().isEmpty() || txt6.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Error, algún campo está vacio");
 				} else {
-
-					int id = Integer.parseInt(ide);
 					int anio = Integer.parseInt(a);
 					int ciAutor = Integer.parseInt(ciAutores);
 
-					altaProyecto(id, curso, nom, tema, anio, autores, ciAutor);
-					listarProyectos(modeloProyecto);
+					Logica.altaProyecto(curso, nom, tema, anio, autores, ciAutor);
+					Logica.listarProyectos(modeloProyecto, orientacionSeleccionada);
+					//modeloProyecto.addRow(fila);
 					panel7.setVisible(false);
 					panel7.revalidate();
 					panel7.repaint();
@@ -390,8 +656,19 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
+		
+		btCerrarAltaProyecto.addActionListener(new ActionListener() {
 
-		bt14.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
+		btCerrarBajaProyecto.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -402,11 +679,44 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 
-		// PANEL ALTA AUTOR
-		bt15.addActionListener(new ActionListener() {
+		btEliminarProyecto.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String id = txfID.getText();
+				if (txfID.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor, ingrese una ID");
+				} else {
+				int id2 = Integer.parseInt(id);
+				Logica.bajaProyecto(id2);
+				Logica.listarProyectos(modeloProyecto, orientacionSeleccionada);
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+				JOptionPane.showMessageDialog(null, "Proyecto eliminado correctamente");
+
+			}}
+		});
+
+		// PANEL GESTIONAR AUTORES
+		
+		btGestionarAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(panel7, "AUTOR");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+			}
+		});
+		
+		panelGestionarAutores.add(btAltaAutor);
+		panelGestionarAutores.add(btBajaAutor);
+		
+		btAltaAutor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "ALTA AUTOR");
 				panel7.setVisible(true);
 				panel7.revalidate();
 				panel7.repaint();
@@ -424,21 +734,26 @@ public class VentanaAdmin extends JFrame {
 		JLabel lbl24 = new JLabel("Primer Apellido");
 		lbl24.setFont(new Font(Arial, Font.BOLD, 18));
 
-		TextField txtAAA = new TextField(20);
+		JTextField txtAAA = new JTextField(20);
 		txtAAA.setPreferredSize(new Dimension(20, 50));
 
-		TextField txtBBB = new TextField(20);
+		JTextField txtBBB = new JTextField(20);
 		txtBBB.setPreferredSize(new Dimension(20, 50));
 
-		TextField txtCCC = new TextField(20);
+		JTextField txtCCC = new JTextField(20);
 		txtCCC.setPreferredSize(new Dimension(20, 50));
 
-		JButton bt16 = new JButton("GUARDAR");
-		bt16.setPreferredSize(new Dimension(120, 40));
-		bt16.setBackground(new Color(56, 182, 255));
-		bt16.setForeground(Color.white);
+		JButton btGuardarAutor = new JButton("GUARDAR");
+		btGuardarAutor.setPreferredSize(new Dimension(120, 40));
+		btGuardarAutor.setBackground(new Color(56, 182, 255));
+		btGuardarAutor.setForeground(Color.white);
+		
+		JButton btCerrarAltaAutor = new JButton("CERRAR");
+		btCerrarAltaAutor.setPreferredSize(new Dimension(120, 40));
+		btCerrarAltaAutor.setBackground(new Color(255, 0, 0));
+		btCerrarAltaAutor.setForeground(Color.white);
 
-		bt16.addActionListener(new ActionListener() {
+		btGuardarAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
@@ -454,8 +769,7 @@ public class VentanaAdmin extends JFrame {
 					 * JOptionPane.showMessageDialog(null, "Este autor ya existe"); }
 					 */
 					int ci = Integer.parseInt(ced);
-					altaAutor(ci, pN, pA);
-					listarProyectos(modeloProyecto);
+					Logica.altaAutor(ci, pN, pA);
 					panel7.setVisible(false);
 					panel7.revalidate();
 					panel7.repaint();
@@ -463,51 +777,98 @@ public class VentanaAdmin extends JFrame {
 			}
 
 		});
+		
+		btCerrarAltaAutor.addActionListener(new ActionListener() {
 
-		panel6.add(lbl21);
-		panel6.add(lbl22);
-		panel6.add(txtAAA);
-		panel6.add(lbl23);
-		panel6.add(txtBBB);
-		panel6.add(lbl24);
-		panel6.add(txtCCC);
-		panel6.add(bt16);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+		
+		btBajaAutor.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(panel7, "BAJA AUTOR");
+				panel7.setVisible(true);
+				panel7.revalidate();
+				panel7.repaint();
+			}
+		});
+		
+		JLabel lblEliminarAutor = new JLabel("ELIMINAR AUTOR");
+		lblEliminarAutor.setFont(new Font(Arial, Font.BOLD, 20));
+
+		JLabel ciAutorBaja = new JLabel("CI (Sin puntos ni guiones)");
+		ciAutorBaja.setFont(new Font(Arial, Font.BOLD, 18));
+		
+		JTextField tfxCiAutor = new JTextField(20);
+		tfxCiAutor.setPreferredSize(new Dimension(20, 50));
+		
+		JButton btEliminarAutor = new JButton("ELIMINAR");
+		btEliminarAutor.setPreferredSize(new Dimension(120, 40));
+		btEliminarAutor.setBackground(new Color(255, 0, 0));
+		btEliminarAutor.setForeground(Color.white);
+		
+		JButton btCerrarBajaAutor = new JButton("CERRAR");
+		btCerrarBajaAutor.setPreferredSize(new Dimension(120, 40));
+		btCerrarBajaAutor.setBackground(new Color(255, 0, 0));
+		btCerrarBajaAutor.setForeground(Color.white);
+		
+		btEliminarAutor.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String ci = tfxCiAutor.getText();
+				if (tfxCiAutor.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Por favor, ingrese una CI");
+				} else {
+				int ci2 = Integer.parseInt(ci);
+				Logica.bajaAutor(ci2);
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+				JOptionPane.showMessageDialog(null, "Autor eliminado correctamente");
+
+			}}
+		});
+		
+		btCerrarBajaAutor.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				panel7.setVisible(false);
+				panel7.revalidate();
+				panel7.repaint();
+
+			}
+		});
+
+		panelAltaAutor.add(lbl21);
+		panelAltaAutor.add(lbl22);
+		panelAltaAutor.add(txtAAA);
+		panelAltaAutor.add(lbl23);
+		panelAltaAutor.add(txtBBB);
+		panelAltaAutor.add(lbl24);
+		panelAltaAutor.add(txtCCC);
+		panelAltaAutor.add(btGuardarAutor);
+		panelAltaAutor.add(btCerrarAltaAutor);
+		
+		panelBajaAutor.add(lblEliminarAutor);
+		panelBajaAutor.add(ciAutorBaja);
+		panelBajaAutor.add(tfxCiAutor);
+		panelBajaAutor.add(btEliminarAutor);
+		panelBajaAutor.add(btCerrarBajaAutor);
 	}
 
-	// FUNCIÓN DAR DE ALTA PROYECTO
-	public void altaProyecto(int id, String curso, String nom, String tema, int anio, String autores, int ciAutores) {
+	
 
-		Proyecto p = new Proyecto(id, curso, nom, tema, anio, autores, ciAutores);
-		listaProyectos.add(p);
-	}
+	
 
-	// FUNCIÓN DE LISTAR PROYECTOS
-	public void listarProyectos(DefaultTableModel modeloProyecto) {
-
-		modeloProyecto.setRowCount(0);
-		for (Proyecto p : listaProyectos) {
-
-			Object[] fila = { p.getId(), p.getCurso(), p.getNom(), p.getTema(), p.getAño(), p.getAutores(),
-					p.getCiAutores() };
-			modeloProyecto.addRow(fila);
-		}
-
-	}
-
-	// FUNCIÓN DAR DE ALTA AUTOR
-	public void altaAutor(int ci, String primerNom, String primerApp) {
-
-		Autor a = new Autor(ci, primerNom, primerApp);
-		listaAutores.add(a);
-
-	}
-
-	// FUNCIÓN ALTA ADMIN
-	public void altaAdmin(int ciAdmin, String contrasenia) {
-
-		Admin ad = new Admin(ciAdmin, contrasenia);
-		listaAdmins.add(ad);
-	}
+	
 
 	// FUNCIÓN COMPROBAR EXITSENCIA DE UN AUTOR
 	/*
