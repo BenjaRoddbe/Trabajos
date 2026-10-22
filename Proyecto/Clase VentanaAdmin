@@ -164,8 +164,10 @@ public class VentanaAdmin extends JFrame {
 		JTable tablaProyecto = new JTable(modeloProyecto);
 		JScrollPane scrollTabla = new JScrollPane(tablaProyecto);
 		Logica.listarProyectos(modeloProyecto, orientacionSeleccionada);
-//		JTextField txt1 = new JTextField("Buscar un proyecto");
 
+		
+		
+		//BOTON MOSTRAR TODAS LAS ORIENTACIONES
 		btTodasOrientaciones.addActionListener(new ActionListener() {
 
 			@Override
@@ -176,6 +178,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON MOSTRAR AUDIOVISUAL
 		btAudiovisual.addActionListener(new ActionListener() {
 
 			@Override
@@ -185,7 +188,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON MOSTRAR INFORMATICA
 		btInformatica.addActionListener(new ActionListener() {
 
 			@Override
@@ -195,7 +199,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON MOSTRAR AGRARIO
 		btAgrario.addActionListener(new ActionListener() {
 
 			@Override
@@ -205,7 +210,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON MOSTRAR CARPINTERIA
 		btCarpinteria.addActionListener(new ActionListener() {
 
 			@Override
@@ -215,7 +221,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON MOSTRAR RECURSOS NATURALES
 		btRecursosNaturales.addActionListener(new ActionListener() {
 
 			@Override
@@ -225,7 +232,9 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		
+		//SE AÑADEN LOS COLORES A BOTONES Y JLABELS
 		lblOrientacionesTitulo.setBackground(new Color(218, 205, 37));
 
 		btTodasOrientaciones.setBackground(new Color(56, 182, 255));
@@ -258,7 +267,8 @@ public class VentanaAdmin extends JFrame {
 		btCerrarSesion.setBackground(new Color(255, 0, 0));
 		btCerrarSesion.setPreferredSize(new Dimension(80, 40));
 		btCerrarSesion.setForeground(Color.WHITE);
-
+		
+		//SE AÑADE LO RESPECTIVO AL PANEL 1
 		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 12, 40)); // Alinea (.CENTER) e indica separacion entre
 																		// componentes (12, 12)
 		panel1.setPreferredSize(new Dimension(200, 300));
@@ -282,7 +292,8 @@ public class VentanaAdmin extends JFrame {
 //		lbl10.setBounds(400, 40, 800, 500);
 //		lbl11.setForeground(Color.white);
 //		lbl11.setFont(new Font(Arial, Font.BOLD, 17));
-
+		
+		//SE AÑADE LO RESPECTIVO AL PANEL 3
 		panel3.setLayout(null);
 		panel3.add(btGestionarAdmin);
 		panel3.add(btGestionarProyecto);
@@ -292,18 +303,21 @@ public class VentanaAdmin extends JFrame {
 		panel3.setBackground(new Color(218, 205, 37));
 		panel3.setPreferredSize(new Dimension(this.getWidth(), 50));
 //		panel3.add(txt1);
-
+		
+		//SE COLOCAN LOS BOTONES Y JLABEL SUPERIORES CON SETBOUNDS
 		btGestionarAdmin.setBounds(1100, 4, 150, 45);
 		btGestionarProyecto.setBounds(940, 4, 150, 45);
 		btGestionarAutor.setBounds(1260, 4, 150, 45);
 		btCerrarSesion.setBounds(1460, 8, 150, 35);
 		lbl11.setBounds(1625, 4, 150, 45);
 
-		// AÑADIR AL JFRAME
+		//SE AÑADE LO RESPECTIVO AL JFRAME
 		this.add(panel1, BorderLayout.WEST);
 		this.add(panel2);
 		this.add(panel3, BorderLayout.NORTH);
 		this.add(panel7, BorderLayout.EAST);
+		
+		//SE AÑADE LO RESPECTIVO AL PANEL 7
 		panel7.setVisible(false);
 		panel7.add(panelGestionarAdmin, "ADMIN");
 		panel7.add(panelAltaAdmin, "ALTA ADMIN");
@@ -317,14 +331,14 @@ public class VentanaAdmin extends JFrame {
 		panel7.add(panelGestionarProyectos, "PROYECTO");
 		panel7.add(panelAltaProyecto, "ALTA PROYECTO");
 		panel7.add(panelBajaProyecto, "BAJA PROYECTO");
+		
+	//__________________________________________________________________
 
 		// PANEL GESTIONAR ADMINS:
-		
-		//alta admin
-		
 		panelGestionarAdmin.add(btAltaAdmin);
 		panelGestionarAdmin.add(btBajaAdmin);
 		
+		//ALTA ADMIN
 		btAltaAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -337,6 +351,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BAJA ADMIN
 		btBajaAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -349,6 +364,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//JLABELS ALTA ADMIN
 		JLabel lbl12 = new JLabel("NUEVO ADMIN");
 		lbl12.setFont(new Font(Arial, Font.BOLD, 20));
 
@@ -357,12 +373,14 @@ public class VentanaAdmin extends JFrame {
 
 		JLabel lbl14 = new JLabel("Contraseña");
 		lbl14.setFont(new Font(Arial, Font.BOLD, 18));
-
+		
+		//JTEXTFIELDS ALTA ADMIN
 		JTextField txt1 = new JTextField(20);
 		txt1.setPreferredSize(new Dimension(20, 50));
 		JTextField txt2 = new JTextField(20);
 		txt2.setPreferredSize(new Dimension(20, 50));
-
+		
+		//JBUTONS ALTA ADMIN
 		JButton btGuardarAdmin = new JButton("GUARDAR");
 		btGuardarAdmin.setPreferredSize(new Dimension(120, 40));
 		btGuardarAdmin.setBackground(new Color(56, 182, 255));
@@ -372,7 +390,8 @@ public class VentanaAdmin extends JFrame {
 		btCerrarAltaAdmin.setPreferredSize(new Dimension(120, 40));
 		btCerrarAltaAdmin.setBackground(new Color(255, 0, 0));
 		btCerrarAltaAdmin.setForeground(Color.white);
-
+		
+		//BOTON GESTIONAR ADMINS
 		btGestionarAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -384,7 +403,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON CERRAR SESION
 		btCerrarSesion.addActionListener(new ActionListener() {
 
 			@Override
@@ -394,7 +414,8 @@ public class VentanaAdmin extends JFrame {
 				inicioo.setVisible(true);
 			}
 		});
-
+		
+		//BOTON GUARDAR ADMIN
 		btGuardarAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -417,7 +438,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON CERRAR ALTA ADMIN
 		btCerrarAltaAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -428,7 +450,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//SE AÑADE LO RESPECTIVO AL PANEL ALTA ADMIN
 		panelAltaAdmin.add(lbl12);
 		panelAltaAdmin.add(lbl13);
 		panelAltaAdmin.add(txt1);
@@ -437,16 +460,18 @@ public class VentanaAdmin extends JFrame {
 		panelAltaAdmin.add(btGuardarAdmin);
 		panelAltaAdmin.add(btCerrarAltaAdmin);
 		
-		//baja admin
+		//JLABELS BAJA ADMIN
 		JLabel lblEliminarAdmin = new JLabel("ELIMINAR ADMIN");
 		lblEliminarAdmin.setFont(new Font(Arial, Font.BOLD, 20));
 
 		JLabel lblCiBajaAdmin = new JLabel("CI (Sin puntos ni guiones)");
 		lblCiBajaAdmin.setFont(new Font(Arial, Font.BOLD, 18));
 		
+		//JTEXTFIELD BAJA ADMIN
 		JTextField txfCiBaja = new JTextField(20);
 		txfCiBaja.setPreferredSize(new Dimension(20, 50));
 		
+		//JBUTTONS BAJA ADMIN
 		JButton btEliminarAdmin = new JButton("ELIMINAR");
 		btEliminarAdmin.setPreferredSize(new Dimension(120, 40));
 		btEliminarAdmin.setBackground(new Color(255, 0, 0));
@@ -457,6 +482,7 @@ public class VentanaAdmin extends JFrame {
 		btCerrarBajaAdmin.setBackground(new Color(255, 0, 0));
 		btCerrarBajaAdmin.setForeground(Color.white);
 		
+		//BOTON ELIMINAR ADMIN
 		btEliminarAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -477,6 +503,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON CERRAR BAJA ADMIN
 		btCerrarBajaAdmin.addActionListener(new ActionListener() {
 
 			@Override
@@ -488,15 +515,19 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//SE AÑADE LO RESPECTIVO AL PANEL BAJA ADMIN
 		panelBajaAdmin.add(lblEliminarAdmin);
 		panelBajaAdmin.add(lblCiBajaAdmin);
 		panelBajaAdmin.add(txfCiBaja);
 		panelBajaAdmin.add(btEliminarAdmin);
 		panelBajaAdmin.add(btCerrarBajaAdmin);
+		//FIN PANEL GESTIONAR ADMINS
+		
+//__________________________________________________________________
 
 		// PANEL GESTIONAR PROYECTOS
 		
-		//alta proyectos
+		//JLABELS ALTA PROYECTO
 		JLabel lblNuevoProyecto = new JLabel("NUEVO PROYECTO");
 		lblNuevoProyecto.setFont(new Font(Arial, Font.BOLD, 20));
 
@@ -517,7 +548,8 @@ public class VentanaAdmin extends JFrame {
 
 		JLabel lblCedulaAutor = new JLabel("CI de uno de los autores");
 		lblCedulaAutor.setFont(new Font(Arial, Font.BOLD, 18));
-
+		
+		//JTEXTFIELD ALTA PROYECTO
 		JTextField txt3 = new JTextField(20);
 		txt3.setPreferredSize(new Dimension(20, 50));
 
@@ -532,10 +564,12 @@ public class VentanaAdmin extends JFrame {
 
 		JTextField txt7 = new JTextField(20);
 		txt7.setPreferredSize(new Dimension(20, 50));
-
+		
+		//COMBOBOX CON LAS ORIENTAIONES
 		String[] cursos = { "Audiovisual", "Informática", "Agrario", "Carpintería", "Recursos N." };
 		JComboBox cbx1 = new JComboBox(cursos);
-
+		
+		//JBUTTONS ALTA PROYECTO
 		JButton btGuardarProyecto = new JButton("GUARDAR");
 		btGuardarProyecto.setPreferredSize(new Dimension(120, 40));
 		btGuardarProyecto.setBackground(new Color(56, 182, 255));
@@ -546,16 +580,18 @@ public class VentanaAdmin extends JFrame {
 		btCerrarAltaProyecto.setBackground(new Color(255, 0, 0));
 		btCerrarAltaProyecto.setForeground(Color.white);
 
-		//baja proyectos
+		//JLABELS BAJA PROYECTO
 		JLabel lblEliminarProyecto = new JLabel("ELIMINAR PROYECTO");
 		lblEliminarProyecto.setFont(new Font(Arial, Font.BOLD, 20));
 
 		JLabel lblIdProyecto = new JLabel("ID del Proyecto");
 		lblIdProyecto.setFont(new Font(Arial, Font.BOLD, 18));
 		
+		//JTEXTFIELD BAJA PROYECTO
 		JTextField txfID = new JTextField(20);
 		txfID.setPreferredSize(new Dimension(20, 50));
 		
+		//BUTTONS BAJA PROYECTO
 		JButton btEliminarProyecto = new JButton("ELIMINAR");
 		btEliminarProyecto.setPreferredSize(new Dimension(120, 40));
 		btEliminarProyecto.setBackground(new Color(255, 0, 0));
@@ -566,9 +602,11 @@ public class VentanaAdmin extends JFrame {
 		btCerrarBajaProyecto.setBackground(new Color(255, 0, 0));
 		btCerrarBajaProyecto.setForeground(Color.white);
 		
+		//SE AÑADEN LOS DOS PANELES DE ALTA Y BAJA AL PANEL GESTION
 		panelGestionarProyectos.add(btAltaProyecto);
 		panelGestionarProyectos.add(btBajaProyecto);
 		
+		//SE AÑADE LO RESPECTIVO AL PANEL ALTA PROYECTO
 		panelAltaProyecto.add(lblNuevoProyecto);
 		panelAltaProyecto.add(lblElegirOrientacion);
 		panelAltaProyecto.add(cbx1);
@@ -585,12 +623,14 @@ public class VentanaAdmin extends JFrame {
 		panelAltaProyecto.add(btGuardarProyecto);
 		panelAltaProyecto.add(btCerrarAltaProyecto);
 		
+		//SE AÑADE LO RESPECTIVO AL PANEL BAJA PROYECTO
 		panelBajaProyecto.add(lblEliminarProyecto);
 		panelBajaProyecto.add(lblIdProyecto);
 		panelBajaProyecto.add(txfID);
 		panelBajaProyecto.add(btEliminarProyecto);
 		panelBajaProyecto.add(btCerrarBajaProyecto);
-
+		
+		//BOTON GESTIONAR PROYECTOS
 		btGestionarProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -603,6 +643,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON ALTA PROYECTO
 		btAltaProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -615,6 +656,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON BAJA PROYECTO
 		btBajaProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -626,7 +668,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON GUARDAR PROYECTO
 		btGuardarProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -656,6 +699,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON CERRAR ALTA PROYECTO
 		btCerrarAltaProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -667,6 +711,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON CERRAR BAJA PROYECTO
 		btCerrarBajaProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -677,7 +722,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//BOTON ELIMINAR PROYECTO
 		btEliminarProyecto.addActionListener(new ActionListener() {
 
 			@Override
@@ -696,9 +742,13 @@ public class VentanaAdmin extends JFrame {
 
 			}}
 		});
-
-		// PANEL GESTIONAR AUTORES
+		//FIN PANEL GESTIONAR PROYECTOS
 		
+	//__________________________________________________________________
+		
+		//PANEL GESTIONAR AUTORES
+		
+		//BOTON GESTIONAR AUTOR
 		btGestionarAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -709,9 +759,11 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//SE AÑADEN LOS BOTONES DE ALTA Y BAJA AL PANEL GESTIONAR
 		panelGestionarAutores.add(btAltaAutor);
 		panelGestionarAutores.add(btBajaAutor);
 		
+		//BOTON ALTA AUTOR
 		btAltaAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -721,6 +773,8 @@ public class VentanaAdmin extends JFrame {
 				panel7.repaint();
 			}
 		});
+		
+		//JLABELS ALTA AUTOR
 		JLabel lbl21 = new JLabel("NUEVO AUTOR");
 		lbl21.setFont(new Font(Arial, Font.BOLD, 20));
 
@@ -732,7 +786,8 @@ public class VentanaAdmin extends JFrame {
 
 		JLabel lbl24 = new JLabel("Primer Apellido");
 		lbl24.setFont(new Font(Arial, Font.BOLD, 18));
-
+		
+		//JTEXTFIELDS ALTA AUTOR
 		JTextField txtAAA = new JTextField(20);
 		txtAAA.setPreferredSize(new Dimension(20, 50));
 
@@ -741,7 +796,8 @@ public class VentanaAdmin extends JFrame {
 
 		JTextField txtCCC = new JTextField(20);
 		txtCCC.setPreferredSize(new Dimension(20, 50));
-
+		
+		//JBUTTONS ALTA AUTOR
 		JButton btGuardarAutor = new JButton("GUARDAR");
 		btGuardarAutor.setPreferredSize(new Dimension(120, 40));
 		btGuardarAutor.setBackground(new Color(56, 182, 255));
@@ -751,7 +807,8 @@ public class VentanaAdmin extends JFrame {
 		btCerrarAltaAutor.setPreferredSize(new Dimension(120, 40));
 		btCerrarAltaAutor.setBackground(new Color(255, 0, 0));
 		btCerrarAltaAutor.setForeground(Color.white);
-
+		
+		//BOTON GUARDAR AUTOR
 		btGuardarAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -777,6 +834,7 @@ public class VentanaAdmin extends JFrame {
 
 		});
 		
+		//BOTON CERRA ALTA AUTOR
 		btCerrarAltaAutor.addActionListener(new ActionListener() {
 
 			@Override
@@ -788,6 +846,7 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//BOTON BAJA AUTOR
 		btBajaAutor.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -798,15 +857,18 @@ public class VentanaAdmin extends JFrame {
 			}
 		});
 		
+		//JLABELS BAJA AUTOR
 		JLabel lblEliminarAutor = new JLabel("ELIMINAR AUTOR");
 		lblEliminarAutor.setFont(new Font(Arial, Font.BOLD, 20));
 
 		JLabel ciAutorBaja = new JLabel("CI (Sin puntos ni guiones)");
 		ciAutorBaja.setFont(new Font(Arial, Font.BOLD, 18));
 		
+		//JTEXTFELD BAJA UTOR
 		JTextField tfxCiAutor = new JTextField(20);
 		tfxCiAutor.setPreferredSize(new Dimension(20, 50));
 		
+		//JBUTTONS BAJA AUTOR
 		JButton btEliminarAutor = new JButton("ELIMINAR");
 		btEliminarAutor.setPreferredSize(new Dimension(120, 40));
 		btEliminarAutor.setBackground(new Color(255, 0, 0));
@@ -817,6 +879,7 @@ public class VentanaAdmin extends JFrame {
 		btCerrarBajaAutor.setBackground(new Color(255, 0, 0));
 		btCerrarBajaAutor.setForeground(Color.white);
 		
+		//BOTON ELIMINAR AUTOR
 		btEliminarAutor.addActionListener(new ActionListener() {
 
 			@Override
@@ -835,6 +898,7 @@ public class VentanaAdmin extends JFrame {
 			}}
 		});
 		
+		//BOTON CERRAR BAJA AUTOR
 		btCerrarBajaAutor.addActionListener(new ActionListener() {
 
 			@Override
@@ -845,7 +909,8 @@ public class VentanaAdmin extends JFrame {
 
 			}
 		});
-
+		
+		//SE AÑADE LO RESPECTIVO AL PANEL ALTA AUTOR
 		panelAltaAutor.add(lbl21);
 		panelAltaAutor.add(lbl22);
 		panelAltaAutor.add(txtAAA);
@@ -856,13 +921,14 @@ public class VentanaAdmin extends JFrame {
 		panelAltaAutor.add(btGuardarAutor);
 		panelAltaAutor.add(btCerrarAltaAutor);
 		
+		//SE AÑADE LO RESPECTIVO AL PANEL BAJA AUTOR
 		panelBajaAutor.add(lblEliminarAutor);
 		panelBajaAutor.add(ciAutorBaja);
 		panelBajaAutor.add(tfxCiAutor);
 		panelBajaAutor.add(btEliminarAutor);
 		panelBajaAutor.add(btCerrarBajaAutor);
 	}
-
+		//FIN PANEL GESTIONAR AUTORES
 	
 
 	
