@@ -647,7 +647,6 @@ public class VentanaAdmin extends JFrame {
 
 					Logica.altaProyecto(curso, nom, tema, anio, autores, ciAutor);
 					Logica.listarProyectos(modeloProyecto, orientacionSeleccionada);
-					//modeloProyecto.addRow(fila);
 					panel7.setVisible(false);
 					panel7.revalidate();
 					panel7.repaint();
