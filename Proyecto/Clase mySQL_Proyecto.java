@@ -49,6 +49,7 @@ public class mySQL_Proyecto {
 		}
 	}
 
+	// FUNCION DAR ALTA PROYECTO
 	public void altaProyecto(String ori, String nom, String tema, int anio, String autores, int ciAutores) {
 
 		String sentenciaProyectosAlta = "INSERT INTO Proyectos(orientacion, nombreProyecto, tema, año, autores, ciAutores)  VALUES ("
