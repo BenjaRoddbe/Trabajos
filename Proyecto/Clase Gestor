@@ -47,7 +47,7 @@ public class Gestor {
 
 	}
 
-	// FUNCIÓN DAR DE BAJA ADMIN
+	// FUNCIÓN DAR DE BAJA AUTOR
 	public void bajaAutor(int ci) {
 
 		mySQL_Proyecto BD = new mySQL_Proyecto();
@@ -69,4 +69,3 @@ public class Gestor {
 	}
 
 }
-
