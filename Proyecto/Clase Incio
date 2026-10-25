@@ -127,6 +127,8 @@ public class Inicio extends JFrame{
 					VentanaAdmin admin = new VentanaAdmin();
 					setVisible(false);
 					admin.setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "Contraseña o CI incorrecta");
 				}
 				
 				
