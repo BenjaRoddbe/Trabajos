@@ -64,7 +64,7 @@ public class Inicio extends JFrame{
 		contraseniaLabel.setForeground(Color.WHITE);
 
 		JTextField ci = new JTextField(10);
-		JTextField contrasenia = new JTextField(10);
+		
 
 		// INICIAR SESION (PANEL INFERIOR IZQUIERDO)
 		JButton iniciarSesion = new JButton("Iniciar Sesión");
@@ -102,7 +102,6 @@ public class Inicio extends JFrame{
 		panelIzqMedio.add(ciLabel);
 		panelIzqMedio.add(ci);
 		panelIzqMedio.add(contraseniaLabel);
-		panelIzqMedio.add(contrasenia);
 		panelIzqMedio.setBackground(new Color(218, 205, 37));
 
 		// PANEL INFERIOR IZQUIERDO
@@ -112,18 +111,24 @@ public class Inicio extends JFrame{
 		panelIzqAb.setBackground(new Color(218, 205, 37));
 		panelIzqAb.add(ingresarUsuario);
 		panelIzq.add(AnepUTU);
+
+		JPasswordField campoPassword = new JPasswordField(15);
+		campoPassword.setEchoChar('*');
 		
 		iniciarSesion.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				
+				char[] password = campoPassword.getPassword();
+				String texto = new String(password);
+				
 				String contenidoCi = ci.getText();
 				int contenidoCi2 = Integer.parseInt(contenidoCi);
-				String contenidoContrasenia = contrasenia.getText();
+				
 				
 				
 
-				if ( contenidoCi2==00000000 && contenidoContrasenia.equals("HOLA")) {
+				if ( contenidoCi2==00000000 && texto.equals("HOLA")) {
 					VentanaAdmin admin = new VentanaAdmin();
 					setVisible(false);
 					admin.setVisible(true);
@@ -135,6 +140,7 @@ public class Inicio extends JFrame{
 			}
 			
 		});
+		panelIzqMedio.add(campoPassword);
 		
 		ingresarUsuario.addActionListener(new ActionListener() {
 			
